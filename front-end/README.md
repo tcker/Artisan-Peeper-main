@@ -1,8 +1,23 @@
-# React + Vite
+# Artisan-Peeper (Front-End)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Assuming you are on the `Artisan-Peeper/front-end` directory
 
-Currently, two official plugins are available:
+First thing you need to do is to run the code `npm run dev` on your Terminal.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The React application will be running at `http://localhost:5173`.
+
+## Usage
+Second thing you need to do, is to create a new tab on your terminal and run the code below `npm run server`.
+
+Once both the JSON server and React application are running, you can visit `http://localhost:5173` in your web browser to access the React application. The React application can make requests to the JSON server API endpoints to fetch or manipulate data.
+
+## JSON Server
+
+The JSON server is configured to serve data from `db.json` file. You can edit this file to add, remove, or modify data as needed for your application.
+
+For more information about JSON server, refer to [JSON Server Documentation](https://github.com/typicode/json-server).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
