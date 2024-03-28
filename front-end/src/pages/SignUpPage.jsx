@@ -1,9 +1,11 @@
+import Register from "@/components/Register.jsx"
+
 function SignUpPage() {
   return (
-    <>
-      Register Page
-    </>
+    <div>
+      <Register/>
+    </div>
   )
 }
 
-export default SignUpPage;
+export default SignUpPage
