@@ -1,10 +1,10 @@
 import {Outlet} from 'react-router-dom'
 import Navbar from '@/components/Navbar.jsx'
 
-function MainLayout() {
+function MainLayout({isAssessmentOpen}) {
   return (
     <>
-      <Navbar/>
+      <Navbar isAssessmentOpen={isAssessmentOpen}/>
       <Outlet/>
     </>
   )
