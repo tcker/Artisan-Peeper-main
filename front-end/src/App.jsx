@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 
 // Global Access
-import LoginPage from "./pages/LoginPage.jsx";
-import SignUpPage from "./pages/SignUpPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
-import MainLayout from "./layout/MainLayout.jsx";
+import LoginPage from "@/pages/LoginPage.jsx";
+import SignUpPage from "@/pages/SignUpPage.jsx";
+import NotFoundPage from "@/pages/NotFoundPage.jsx";
+import MainLayout from "@/layout/MainLayout.jsx";
 
 // Applicant Side Import
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
