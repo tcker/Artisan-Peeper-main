@@ -1,9 +1,14 @@
+import JobListing from "@/components/JobListing.jsx";
+import Container from "@/components/Container.jsx";
+
 
 function ApplicantDashboardPage() {
+  console.log();
+
   return (
-    <div>
-      <h1>You are now logged in! Applicant</h1>
-    </div>
+    <Container>
+      <JobListing/>
+    </Container>
   )
 }
 
