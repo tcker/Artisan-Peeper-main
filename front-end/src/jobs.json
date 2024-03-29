@@ -15,7 +15,7 @@
   },
   {
     "id": "2",
-    "title": "Front-End Engineer (React & Redux)",
+    "title": "Front-End Engineer",
     "type": "Full-Time",
     "location": "Miami, FL",
     "description": "Join our team as a Front-End Developer in sunny Miami, FL. We are looking for a motivated individual with a passion for crafting beautiful and responsive web applications. Experience with UI/UX design principles and a strong attention to detail are highly desirable.",
@@ -67,20 +67,6 @@
       "description": "Port Solutions is a leading technology company specializing in software development and digital marketing. We are committed to providing our clients with cutting-edge solutions and our employees with a supportive and rewarding work environment.",
       "contactEmail": "contact@ipsumlorem.com",
       "contactPhone": "555-555-5555"
-    }
-  },
-  {
-    "id": "3ea6",
-    "title": "Eater",
-    "type": "Remote",
-    "location": "Poblacion, Makati",
-    "description": "Hello",
-    "salary": "Under $50K",
-    "company": {
-      "name": "Adonis Gay Bar",
-      "description": "",
-      "contactEmail": "adonis@gmail.com",
-      "contactPhone": "09202042139"
     }
   }
 ]
