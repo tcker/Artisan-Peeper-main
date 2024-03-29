@@ -26,7 +26,7 @@ export const HideAssessmentContext = createContext();
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true)
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
 
