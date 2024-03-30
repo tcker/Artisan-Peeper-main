@@ -32,10 +32,30 @@ import { ThemeProvider } from "./components/theme-provider.jsx";
 
 function App() {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(true)
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
+  // Add New Job
+  const addJob = async (newJob) => {
+    const res = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newJob),
+    });
+    return;
+  }
+
+  // Delete Job
+
+  const deleteJob = async (id) => {
+    const res = await fetch(`/api/jobs/${id}`, {
+      method: 'DELETE'
+    });
+    return;
+  }
 
   const router = createBrowserRouter (
     createRoutesFromElements (
@@ -48,7 +68,7 @@ function App() {
         {isAuthenticated? (
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
-              <Route path='/jobs/:id' element={<JobPage/>} loader={jobLoader}/>
+              <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>} loader={jobLoader}/>
             </Route>
           </>
         ) : (
@@ -75,7 +95,7 @@ function App() {
             <Route path='/' element={<MainLayout/>}>
               <>
                 <Route path='/dashboard' element={<AdminDashboard/>}/>
-                <Route path='/add-job' element={<AddJobPage/>}/>
+                <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
               </>
             </Route>
           </>
