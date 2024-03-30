@@ -1,10 +1,14 @@
-
+import JobListing from "@/components/JobListing.jsx"
+import Container from "@/components/Container.jsx"
 
 function AdminDashboard() {
   return (
-    <div>
-      <h1>You are an Admin logged in a dashboard!</h1>
-    </div>
+    <Container>
+      <div>
+        <h1 className="pl-5 mb-5 font-bold text-3xl upp">Welcome back, Admin.</h1>
+        <JobListing/>
+      </div>
+    </Container>
   )
 }
 
