@@ -24,6 +24,7 @@ import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboar
 
 // Admin Side Import
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AddJobPage from "./pages/Admin/AddJobPage.jsx";
 export const HideAssessmentContext = createContext();
 
 // Theming Import
@@ -33,7 +34,7 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
 
 
   const router = createBrowserRouter (
@@ -71,8 +72,12 @@ function App() {
         {/* Admin Authentication */}
         {isAuthenticated && isAdmin ? (
           <>
-            <Route path='/' element={<MainLayout/>}/>
-            <Route path='/dashboard' element={<AdminDashboard/>}/>
+            <Route path='/' element={<MainLayout/>}>
+              <>
+                <Route path='/dashboard' element={<AdminDashboard/>}/>
+                <Route path='/add-job' element={<AddJobPage/>}/>
+              </>
+            </Route>
           </>
         ) : (
           ''
