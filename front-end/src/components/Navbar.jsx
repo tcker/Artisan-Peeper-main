@@ -24,12 +24,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import { ModeToggle } from "./mode-toggle.jsx";
+
 import logo from "@/assets/ArtisanLogo.png";
 
 function Navbar({ isAssessmentOpen }) {
   const [openSidebar, setOpenSidebar] = useState(false);
-
-  function showProfile() {}
 
   const arrowStyle =
     "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-800 rounded-full text-zinc-400";
@@ -114,32 +114,37 @@ function Navbar({ isAssessmentOpen }) {
                   done.
                 </SheetDescription>
               </SheetHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    className="col-span-3"
-                  />
+              <form>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      className="col-span-3"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="email" className="text-right">
+                      Email
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      className="col-span-3"
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Username
-                  </Label>
-                  <Input
-                    id="username"
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button type="submit">Save changes</Button>
-                </SheetClose>
-              </SheetFooter>
+                <SheetFooter>
+                  <SheetClose asChild>
+                    <Button type="submit">Save changes</Button>
+                  </SheetClose>
+                </SheetFooter>
+              </form>
             </SheetContent>
           </Sheet>
         </div>
@@ -154,6 +159,10 @@ function Navbar({ isAssessmentOpen }) {
             Log-out
           </span>
         </NavLink>
+
+        <div className='mt-9'>
+          <ModeToggle/>
+        </div>
       </div>
     </nav>
   );
