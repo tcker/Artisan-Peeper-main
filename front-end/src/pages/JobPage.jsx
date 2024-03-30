@@ -1,7 +1,7 @@
 import Container from "@/components/Container.jsx";
 import { useParams, useLoaderData } from "react-router-dom";
 import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,9 +25,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-function JobPage() {
+function JobPage({deleteJob}) {
   const { id } = useParams();
   const job = useLoaderData();
+  const navigate = useNavigate();
+
+  function onDeleteClick(id) {
+    deleteJob(id);
+    navigate('/dashboard')
+  }
 
   return (
     <Container>
@@ -108,7 +114,7 @@ function JobPage() {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
+                      <AlertDialogAction onClick={() => onDeleteClick(job.id)}>Continue</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
