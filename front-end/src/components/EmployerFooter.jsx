@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const EmployerFooter = () => {
   return (
     <>
-      <footer className="max-h-29 w-full bg-white ">
+      <footer className="max-h-29 w-full  bg-white ">
         <div className="flex py-5 mx-6 border-b-2 border-black justify-between items-center flex-wrap">
           <div>
             <img src={Logo} className="inline h-20 w-auto"/>
