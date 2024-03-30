@@ -23,6 +23,9 @@ import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboar
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 export const HideAssessmentContext = createContext();
 
+// Theming Import
+import { ThemeProvider } from "./components/theme-provider.jsx";
+
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
@@ -80,7 +83,13 @@ function App() {
     )
   )
   
-  return <RouterProvider router={router}/>;
+  return (
+    <>
+      <ThemeProvider>
+        <RouterProvider router={router}/>
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App

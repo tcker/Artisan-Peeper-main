@@ -12,6 +12,9 @@ import { useState } from "react";
 import { FaMapMarker } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
+import {Link} from 'react-router-dom'
+
+
 function JobCard({ job }) {
   const [showFullDescription, setShowFullDescription] = useState(false);
 
@@ -40,8 +43,10 @@ function JobCard({ job }) {
         </CardDescription>
       </CardContent>
       <CardFooter className="flex justify-end gap-x-4">
-        <Button className="bg-indigo-500 hover:bg-indigo-300">Apply</Button>
-        <Button variant="outline">Read More</Button>
+        <Button className="bg-indigo-500 hover:bg-indigo-300 text-white" variant="outline">Apply</Button>
+        <Link to={`/jobs/${job.id}`}>
+          <Button variant="outline">Read More</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
