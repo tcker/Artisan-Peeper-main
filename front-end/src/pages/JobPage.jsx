@@ -1,6 +1,7 @@
 import Container from "@/components/Container.jsx";
 import { useParams, useLoaderData } from "react-router-dom";
-import { FaMapMarker } from "react-icons/fa";
+import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
+import {Link} from 'react-router-dom';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,6 +31,17 @@ function JobPage() {
 
   return (
     <Container>
+      <section>
+        <div className="containerpy-6 px-6 mb-2">
+          <Link
+            to="/dashboard"
+            className="hover:text-indigo-200 flex items-center transition duration-1 00"
+          >
+            <FaArrowLeft className="mr-2"/> Back to Job Listings
+          </Link>
+        </div>
+      </section>
+    
       <div className="grid sm:grid-cols-1 gap-2 pl-2 pr-2 grid-flow-row">
         <div className="grid gap-2 grid-cols">
           <Card className="p-5">
