@@ -7,10 +7,11 @@ import {
 } from "react-router-dom";
 
 // Global Access
-import LoginPage from "@/pages/LoginPage.jsx";
-import SignUpPage from "@/pages/SignUpPage.jsx";
-import NotFoundPage from "@/pages/NotFoundPage.jsx";
-import MainLayout from "@/layout/MainLayout.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
+import MainLayout from "./layout/MainLayout.jsx";
+
 
 // Applicant Side Import
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
@@ -20,13 +21,13 @@ import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
 
 // Admin Side Import
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 export const HideAssessmentContext = createContext();
 
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
 
 
