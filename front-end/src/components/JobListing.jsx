@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import JobCard from "./JobCard.jsx";
-import Spinner from "./Spinner.jsx";
 
 function JobListing() {
   const [jobs, setJobs] = useState([]);
