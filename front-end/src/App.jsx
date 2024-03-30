@@ -66,7 +66,7 @@ function App() {
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
               <>
-                <Route path='assessment-dashboard' element={<AssessmentDashboard/>}/>
+                <Route path='/assessment-dashboard' element={<AssessmentDashboard/>}/>
               </>
             </Route>
           </>
