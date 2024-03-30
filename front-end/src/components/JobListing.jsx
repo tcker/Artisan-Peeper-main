@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import JobCard from "./JobCard.jsx";
+import Spinner from "./Spinner.jsx";
 
 function JobListing() {
   const [jobs, setJobs] = useState([]);
@@ -7,18 +8,19 @@ function JobListing() {
 
   useEffect(() => {
     const fetchJobs = async () => {
-
       try {
-        const res = await fetch('http://localhost:8000/jobs');
+        const res = await fetch("/api/jobs");
         const data = await res.json();
         setJobs(data);
       } catch (error) {
-        console.log('Error fetching data', error);
+        console.log("Error fetching data", error);
+      } finally {
+        setLoading(false);
       }
-    }
+    };
 
     fetchJobs();
-  }, [])
+  }, []);
 
   return (
     <div className="flex justify-center align-center overflow-hidden pl-2 pr-2">
