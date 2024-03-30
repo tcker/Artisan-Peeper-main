@@ -36,15 +36,15 @@ function Navbar({ isAssessmentOpen }) {
 
   const linkClass = ({ isActive }) =>
     isActive
-      ? `mt-2 mb-2 text-gray-100 bg-indigo-400 flex text-2xl items-center gap-x-4 cursor-pointer p-2 rounded-md transition duration-200 ease-in-out`
-      : `text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
+      ? `mt-2 mb-2 text-gray-100 bg-indigo-800 flex text-2xl items-center gap-x-4 cursor-pointer p-2 rounded-md transition duration-200 ease-in-out`
+      : `mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
 
   return (
     <nav className="fixed">
       <div
         className={`${
           openSidebar ? "w-72" : "w-20"
-        } duration-300 h-[calc(100vh+100px)] bg-indigo-800 relative p-5 pt-8`}
+        } duration-300 h-[calc(100vh+100px)] bg-indigo-500 relative p-5 pt-8`}
       >
         {!openSidebar ? (
           <HiChevronRight
