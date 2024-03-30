@@ -65,7 +65,7 @@ function App() {
         <Route path="/register" element={<SignUpPage/>}/>
 
         {/* Authentication Global Access */}
-        {isAuthenticated? (
+        {isAuthenticated ? (
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
               <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>} loader={jobLoader}/>
@@ -92,7 +92,7 @@ function App() {
         {/* Admin Authentication */}
         {isAuthenticated && isAdmin ? (
           <>
-            <Route path='/' element={<MainLayout/>}>
+            <Route path='/' element={<MainLayout isAdmin={isAdmin}/>}>
               <>
                 <Route path='/dashboard' element={<AdminDashboard/>}/>
                 <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
@@ -124,7 +124,8 @@ function App() {
   
   return (
     <>
-      <ThemeProvider>
+      {/*This is for Light/Dark Mode */}
+      <ThemeProvider> 
         <RouterProvider router={router}/>
       </ThemeProvider>
     </>
