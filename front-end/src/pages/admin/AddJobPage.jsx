@@ -184,7 +184,7 @@ function AddJobPage({addJobSubmit}) {
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline">Cancel</Button>
-              <Button>Post Job</Button>
+              <Button type="submit">Post Job</Button>
             </CardFooter>
           </form>
         </Card>
