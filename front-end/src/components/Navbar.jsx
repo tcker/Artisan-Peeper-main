@@ -26,13 +26,25 @@ import {
 
 import { ModeToggle } from "./mode-toggle.jsx";
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 import logo from "@/assets/ArtisanLogo.png";
 
 function Navbar({ isAssessmentOpen }) {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const arrowStyle =
-    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-800 rounded-full text-zinc-400";
+    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-500 rounded-full text-zinc-400";
 
   const linkClass = ({ isActive }) =>
     isActive
@@ -110,7 +122,7 @@ function Navbar({ isAssessmentOpen }) {
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>
-                  Make changes to your profile here. Click save when you're
+                  Make changes to your profile here. Click save when you&apos;re
                   done.
                 </SheetDescription>
               </SheetHeader>
@@ -149,19 +161,39 @@ function Navbar({ isAssessmentOpen }) {
           </Sheet>
         </div>
 
-        <NavLink to="/login" className={linkClass}>
-          <HiMiniArrowRightOnRectangle />
-          <span
-            className={`text-gray-100 text-sm ${
-              !openSidebar && "hidden"
-            } origin-left duration-200`}
-          >
-            Log-out
-          </span>
-        </NavLink>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+              <div className='mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out'> 
+                <HiMiniArrowRightOnRectangle />
+                <span
+                  className={`text-gray-100 text-sm ${
+                    !openSidebar && "hidden"
+                  } origin-left duration-200`}
+                >
+                  Log-out
+                </span>
+              </div>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to log-out?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>
+                <NavLink to="/login">
+                  Continue
+                </NavLink>
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
-        <div className='mt-9'>
-          <ModeToggle/>
+        <div className="mt-9">
+          <ModeToggle />
         </div>
       </div>
     </nav>
