@@ -93,7 +93,7 @@ function JobPage({deleteJob}) {
             <CardHeader>
               <CardTitle>Manage Job</CardTitle>
               <div className="grid sm:grid-cols-1 md:grid-cols-8 gap-2 pt-4">
-                <Link to='/add-job' className="w-23">
+                <Link to={`/edit-job/${job.id}`} className="w-23">
                   <Button className="w-[100%]">Edit Job</Button>
                 </Link>
                 <AlertDialog>
