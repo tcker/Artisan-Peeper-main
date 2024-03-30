@@ -20,7 +20,7 @@ import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
 
 // Admin Side Import
-import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 export const HideAssessmentContext = createContext();
 
 function App() {

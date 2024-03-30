@@ -1,8 +1,10 @@
-
+import ErrorMSG from "@/components/ui/ErrorMSG.jsx"
 
 function NotFoundPage() {
   return (
-    <h1>404 Not Found</h1>
+    <div className="h-screen w-screen bg-black flex justify-center items-center">
+      <ErrorMSG />
+    </div>
   );
 }
 
