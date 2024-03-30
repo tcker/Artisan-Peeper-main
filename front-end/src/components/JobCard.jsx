@@ -40,7 +40,7 @@ function JobCard({ job }) {
         </CardDescription>
       </CardContent>
       <CardFooter className="flex justify-end gap-x-4">
-        <Button className="bg-indigo-500 hover:bg-indigo-300">Apply</Button>
+        <Button className="bg-indigo-500 hover:bg-indigo-300 text-white" variant="outline">Apply</Button>
         <Button variant="outline">Read More</Button>
       </CardFooter>
     </Card>
