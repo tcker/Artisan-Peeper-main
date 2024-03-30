@@ -25,6 +25,7 @@ import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboar
 // Admin Side Import
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
 import AddJobPage from "./pages/Admin/AddJobPage.jsx";
+import EditJobPage from "./pages/Admin/EditJobPage.jsx";
 export const HideAssessmentContext = createContext();
 
 // Theming Import
@@ -49,10 +50,21 @@ function App() {
   }
 
   // Delete Job
-
   const deleteJob = async (id) => {
     const res = await fetch(`/api/jobs/${id}`, {
       method: 'DELETE'
+    });
+    return;
+  }
+
+  // Update Job
+  const updateJob = async (job) => {
+    const res = await fetch(`/api/jobs/${job.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(job),
     });
     return;
   }
@@ -96,6 +108,7 @@ function App() {
               <>
                 <Route path='/dashboard' element={<AdminDashboard/>}/>
                 <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
+                <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
               </>
             </Route>
           </>
