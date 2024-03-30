@@ -12,6 +12,9 @@ import SignUpPage from "@/pages/SignUpPage.jsx";
 import NotFoundPage from "@/pages/NotFoundPage.jsx";
 import MainLayout from "@/layout/MainLayout.jsx";
 
+// Global Access && Authenticated
+import JobPage, {jobLoader} from "./pages/JobPage.jsx";
+
 // Applicant Side Import
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
 import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
@@ -22,6 +25,9 @@ import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboar
 // Admin Side Import
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 export const HideAssessmentContext = createContext();
+
+// Theming Import
+import { ThemeProvider } from "./components/theme-provider.jsx";
 
 function App() {
 
@@ -36,6 +42,17 @@ function App() {
         {/* Authentication */}
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<SignUpPage/>}/>
+
+        {/* Authentication Global Access */}
+        {isAuthenticated? (
+          <>
+            <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
+              <Route path='/jobs/:id' element={<JobPage/>} loader={jobLoader}/>
+            </Route>
+          </>
+        ) : (
+          ''
+        )}
 
         {/* Applicant Authentication */}
         {isAuthenticated && !isAdmin ? (
@@ -80,7 +97,13 @@ function App() {
     )
   )
   
-  return <RouterProvider router={router}/>;
+  return (
+    <>
+      <ThemeProvider>
+        <RouterProvider router={router}/>
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App

@@ -24,27 +24,39 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
+import { ModeToggle } from "./mode-toggle.jsx";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
 import logo from "@/assets/ArtisanLogo.png";
 
 function Navbar({ isAssessmentOpen }) {
   const [openSidebar, setOpenSidebar] = useState(false);
 
-  function showProfile() {}
-
   const arrowStyle =
-    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-800 rounded-full text-zinc-400";
+    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-500 rounded-full text-zinc-400";
 
   const linkClass = ({ isActive }) =>
     isActive
-      ? `mt-2 mb-2 text-gray-100 bg-indigo-400 flex text-2xl items-center gap-x-4 cursor-pointer p-2 rounded-md transition duration-200 ease-in-out`
-      : `text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
+      ? `mt-2 mb-2 text-gray-100 bg-indigo-800 flex text-2xl items-center gap-x-4 cursor-pointer p-2 rounded-md transition duration-200 ease-in-out`
+      : `mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
 
   return (
     <nav className="fixed">
       <div
         className={`${
           openSidebar ? "w-72" : "w-20"
-        } duration-300 h-[calc(100vh+100px)] bg-indigo-800 relative p-5 pt-8`}
+        } duration-300 h-[calc(100vh+100px)] bg-indigo-500 relative p-5 pt-8`}
       >
         {!openSidebar ? (
           <HiChevronRight
@@ -110,50 +122,79 @@ function Navbar({ isAssessmentOpen }) {
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>
-                  Make changes to your profile here. Click save when you're
+                  Make changes to your profile here. Click save when you&apos;re
                   done.
                 </SheetDescription>
               </SheetHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="name" className="text-right">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    className="col-span-3"
-                  />
+              <form>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      className="col-span-3"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="email" className="text-right">
+                      Email
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      className="col-span-3"
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="username" className="text-right">
-                    Username
-                  </Label>
-                  <Input
-                    id="username"
-                    className="col-span-3"
-                  />
-                </div>
-              </div>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button type="submit">Save changes</Button>
-                </SheetClose>
-              </SheetFooter>
+                <SheetFooter>
+                  <SheetClose asChild>
+                    <Button type="submit">Save changes</Button>
+                  </SheetClose>
+                </SheetFooter>
+              </form>
             </SheetContent>
           </Sheet>
         </div>
 
-        <NavLink to="/login" className={linkClass}>
-          <HiMiniArrowRightOnRectangle />
-          <span
-            className={`text-gray-100 text-sm ${
-              !openSidebar && "hidden"
-            } origin-left duration-200`}
-          >
-            Log-out
-          </span>
-        </NavLink>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+              <div className='mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out'> 
+                <HiMiniArrowRightOnRectangle />
+                <span
+                  className={`text-gray-100 text-sm ${
+                    !openSidebar && "hidden"
+                  } origin-left duration-200`}
+                >
+                  Log-out
+                </span>
+              </div>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to log-out?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction>
+                <NavLink to="/login">
+                  Continue
+                </NavLink>
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        <div className="mt-9">
+          <ModeToggle />
+        </div>
       </div>
     </nav>
   );
