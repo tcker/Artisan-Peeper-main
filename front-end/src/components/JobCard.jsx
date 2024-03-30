@@ -7,7 +7,7 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-import { useState, usePa } from "react";
+import { useState } from "react";
 
 import { FaMapMarker } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
