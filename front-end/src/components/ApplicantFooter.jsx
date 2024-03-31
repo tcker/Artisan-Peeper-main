@@ -9,7 +9,7 @@ const ApplicantFooter = () => {
   return (
     <>
       <footer className="max-h-29 max-w-auto ml-20 bg-white dark:bg-indigo-950 border-t-2 border-gray  sm:mt-7 md:md-0 md:mr-0">
-        <div className="flex py-5 mx-6 border-b-2 border-black justify-between items-center flex-wrap">
+        <div className="flex py-5 mx-6 border-b-2 border-black dark:border-slate-300 justify-between items-center flex-wrap">
           <div className='flex flex-wrap justify-center items-center'>
 
             <img src={Logo} className="h-20 w-auto sm:block md:inline self-center"/>
@@ -27,7 +27,7 @@ const ApplicantFooter = () => {
           </div>
 
           <div>
-            <p className="text-spacing mr-5 self-center">This project is an output for the<br/> fullfilment of the Hackathon of<br/> WPH Digital Lte Ptd. </p>
+            <p className="text-spacing mr-5 self-center my-2">This project is an output for the<br/> fullfilment of the Hackathon of<br/> WPH Digital Lte Ptd. </p>
           </div>
         </div>
         

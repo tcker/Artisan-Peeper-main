@@ -21,6 +21,8 @@ import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 
 // Applicant Assessment
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
+import Assessmentchoices from "./pages/Applicant/Assessment/Assessmentchoices.jsx";
+import Assessment from "./pages/Applicant/Assessment/Assessment.jsx";
 
 // Admin Side Import
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
@@ -29,10 +31,11 @@ export const HideAssessmentContext = createContext();
 // Theming Import
 import { ThemeProvider } from "./components/theme-provider.jsx";
 
+
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true)
   const [isAdmin, setIsAdmin] = useState(false)
 
 
@@ -84,6 +87,8 @@ function App() {
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
               <>
                 <Route path='/assessment-dashboard' element={<AssessmentDashboard/>}/>
+                <Route path='/assessment-areas' element={<Assessmentchoices/>}/>
+                <Route path='/assessment-start' element={<Assessment/>}/>
               </>
             </Route>
           </>
