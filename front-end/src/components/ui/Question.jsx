@@ -12,7 +12,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
 
   return (
     <div className='px-2 py-1 w-[600px]'>
-      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg border-2 border-black' style="">QUESTION #{no}: {question}</h1>
+      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg border-2 border-black' style={{}}>QUESTION #{no}: {question}</h1>
 
       <forms className="grid grid-cols-2 gap-x-3 gap-y-2 *:rounded-md">
           <div className='flex justify-between px-3 py-1 border-[1px] border-black text-wrap hover:scale-105 hover:bg-indigo-600 duration-100'
