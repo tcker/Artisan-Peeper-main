@@ -27,7 +27,7 @@ const ApplicantFooter = () => {
           </div>
 
           <div>
-            <p className="text-spacing mr-5 self-center my-2">This project is an output for the<br/> fullfilment of the Hackathon of<br/> WPH Digital Lte Ptd. </p>
+            <p className="text-spacing mr-5 self-center ">This project is an output for the<br/> fullfilment of the Hackathon of<br/> WPH Digital Lte Ptd. </p>
           </div>
         </div>
         

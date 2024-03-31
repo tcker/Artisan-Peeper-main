@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import Q from '@/assets/Q.png'
 
 const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
   const [selectedOption, setSelectedOption] = useState('');
+  const backgroundchange = {
+    backgroundImage: `url(${Q})`
+  }
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
@@ -11,11 +15,12 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
   }
 
   return (
+    <div className='flex p-3 border-gray border-2 justify-center'>
     <div className='px-2 py-1 w-[600px]'>
-      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg border-2 border-black' style={{}}>QUESTION #{no}: {question}</h1>
+      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg bg-center bg-cover' style={backgroundchange}>QUESTION #{no}: {question}</h1>
 
       <forms className="grid grid-cols-2 gap-x-3 gap-y-2 *:rounded-md">
-          <div className='flex justify-between px-3 py-1 border-[1px] border-black text-wrap hover:scale-105 hover:bg-indigo-600 duration-100'
+          <div className='flex justify-between px-3 py-1 border-[1px] border-slate-500 text-wrap hover:scale-105 hover:bg-indigo-500 duration-100'
             value="option1"
             checked={selectedOption === 'option1'}
             onChange={handleOptionChange}> 
@@ -27,7 +32,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
               checked={selectedOption === 'option1'}
               onChange={handleOptionChange}/>
           </div>
-          <div className='flex justify-between px-3 py-1 border-[1px] border-black text-wrap hover:scale-105 hover:bg-indigo-600 duration-100'
+          <div className='flex justify-between px-3 py-1 border-[1px] border-slate-500 text-wrap hover:scale-105 hover:bg-indigo-500 duration-100'
             value="option2"
             checked={selectedOption === 'option2'}
             onChange={handleOptionChange}> 
@@ -40,7 +45,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
               onChange={handleOptionChange}
               />
           </div>
-          <div className='flex justify-between px-3 py-1 border-[1px] border-black text-wrap hover:scale-105 hover:bg-indigo-600 duration-100'
+          <div className='flex justify-between px-3 py-1 border-[1px] border-slate-500 text-wrap hover:scale-105 hover:bg-indigo-500 duration-100'
             value="option3"
             checked={selectedOption === 'option3'}
             onChange={handleOptionChange}> 
@@ -53,7 +58,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
               onChange={handleOptionChange}
               />
           </div>
-          <div className='peer flex justify-between px-3 py-1 border-[1px] border-black text-wrap hover:scale-105 hover:bg-indigo-600 duration-100'
+          <div className='peer flex justify-between px-3 py-1 border-[1px] border-slate-500 text-wrap hover:scale-105 hover:bg-indigo-500 duration-100'
               value="option4"
               checked={selectedOption === 'option4'}
               onChange={handleOptionChange}> 
@@ -67,6 +72,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
               />
           </div>
       </forms>
+    </div>
     </div>
   )
 }
