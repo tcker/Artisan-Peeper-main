@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { Link } from 'react-router-dom'
 
 const QuestionNav = () => {
   const [time, setTime] = useState(30 * 60);
@@ -51,7 +52,7 @@ const QuestionNav = () => {
         <span className='p-1 bg-slate-200 rounded-full'>6</span>
       </div>
       <div className='flex h-[35%] items-end justify-end'>
-        <Button>Submit</Button>
+        <Button><Link to="/assessment-areas">Submit</Link></Button>
       </div>
     </div>
   );

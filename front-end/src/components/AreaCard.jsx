@@ -39,7 +39,7 @@ const Question = ({ title, score, upto }) => {
               </CameraAlertHeader>
                 <CameraAlertFooter>
                   <CameraAlertCancel>Cancel</CameraAlertCancel>
-                  <CameraAlertAction><Link to="/">Continue</Link></CameraAlertAction>
+                  <CameraAlertAction><Link to="/assessment-start">Continue</Link></CameraAlertAction>
                 </CameraAlertFooter>
             </CameraAlertContent>
         </CameraAlert>

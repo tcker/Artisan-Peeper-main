@@ -1,4 +1,5 @@
 import Container from "@/components/Container.jsx";
+import { Link } from "react-router-dom"
 
 import {
   Card,
@@ -16,11 +17,11 @@ function AssessmentDashboard() {
       <div className="pl-2 pr-2">
         <Card>
           <CardHeader>
-            <CardTitle className="text-indigo-900 text-center text-3xl">
+            <CardTitle className=" text-center text-3xl">
               Assessment Exam
             </CardTitle>
             <CardContent>
-              <CardTitle className="text-green-700 text-xl">
+              <CardTitle className="text-green-500 text-xl">
                 The DO&apos;s Before The Exam
               </CardTitle>
               <ol className="leading-10 tracking-wide">
@@ -67,7 +68,7 @@ function AssessmentDashboard() {
               </ol>
             </CardContent>
             <CardContent>
-              <CardTitle className="text-red-700 text-xl">
+              <CardTitle className="text-red-500 text-xl">
                 The DONT&apos;s Before The Exam
               </CardTitle>
               <ol className="leading-10 tracking-wide">
@@ -128,7 +129,7 @@ function AssessmentDashboard() {
           </CardHeader>
           <CardFooter className="flex flex-row">
             <CardContent>
-              <Button>I agree and proceed to the assessment</Button>
+              <Button><Link to="/assessment-areas">I agree and proceed to the assessment</Link></Button>
             </CardContent>
           </CardFooter>
         </Card>

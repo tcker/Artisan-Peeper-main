@@ -8,6 +8,7 @@ import {
   HiOutlineUser,
   HiOutlineLightBulb,
   HiMiniArrowRightOnRectangle,
+  HiOutlineBriefcase,
 } from "react-icons/hi2";
 
 import { Input } from "@/components/ui/input";
@@ -40,7 +41,7 @@ import {
 
 import logo from "@/assets/ArtisanLogo.png";
 
-function Navbar({ isAssessmentOpen }) {
+function Navbar({ isAssessmentOpen, isAdmin }) {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const arrowStyle =
@@ -106,73 +107,86 @@ function Navbar({ isAssessmentOpen }) {
           ""
         )}
 
-        <div className="`text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`">
-          <HiOutlineUser className="text-gray-100" />
-          <Sheet>
-            <SheetTrigger asChild>
-              <span
-                className={`text-gray-100 text-sm ${
-                  !openSidebar && "hidden"
-                } origin-left duration-200`}
-              >
-                Profile
-              </span>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Edit profile</SheetTitle>
-                <SheetDescription>
-                  Make changes to your profile here. Click save when you&apos;re
-                  done.
-                </SheetDescription>
-              </SheetHeader>
-              <form>
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      className="col-span-3"
-                      required
-                    />
-                  </div>
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="email" className="text-right">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      className="col-span-3"
-                      required
-                    />
-                  </div>
-                </div>
-                <SheetFooter>
-                  <SheetClose asChild>
-                    <Button type="submit">Save changes</Button>
-                  </SheetClose>
-                </SheetFooter>
-              </form>
-            </SheetContent>
-          </Sheet>
-        </div>
-
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-              <div className='mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out'> 
-                <HiMiniArrowRightOnRectangle />
+        {isAdmin ? (
+          <NavLink to="/add-job" className={linkClass}>
+            <HiOutlineBriefcase />
+            <span
+              className={`text-gray-100 text-sm ${
+                !openSidebar && "hidden"
+              } origin-left duration-200`}
+            >
+              Add Job
+            </span>
+          </NavLink>
+        ) : (
+          <div className="`text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`">
+            <HiOutlineUser className="text-gray-100" />
+            <Sheet>
+              <SheetTrigger asChild>
                 <span
                   className={`text-gray-100 text-sm ${
                     !openSidebar && "hidden"
                   } origin-left duration-200`}
                 >
-                  Log-out
+                  Profile
                 </span>
-              </div>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Edit profile</SheetTitle>
+                  <SheetDescription>
+                    Make changes to your profile here. Click save when
+                    you&apos;re done.
+                  </SheetDescription>
+                </SheetHeader>
+                <form>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="name" className="text-right">
+                        Name
+                      </Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        className="col-span-3"
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                      <Label htmlFor="email" className="text-right">
+                        Email
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        className="col-span-3"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <SheetFooter>
+                    <SheetClose asChild>
+                      <Button type="submit">Save changes</Button>
+                    </SheetClose>
+                  </SheetFooter>
+                </form>
+              </SheetContent>
+            </Sheet>
+          </div>
+        )}
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <div className="mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out">
+              <HiMiniArrowRightOnRectangle />
+              <span
+                className={`text-gray-100 text-sm ${
+                  !openSidebar && "hidden"
+                } origin-left duration-200`}
+              >
+                Log-out
+              </span>
+            </div>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
@@ -184,9 +198,7 @@ function Navbar({ isAssessmentOpen }) {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <AlertDialogAction>
-                <NavLink to="/login">
-                  Continue
-                </NavLink>
+                <NavLink to="/login">Continue</NavLink>
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
