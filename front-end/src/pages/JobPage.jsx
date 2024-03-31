@@ -1,7 +1,7 @@
 import Container from "@/components/Container.jsx";
 import { useParams, useLoaderData } from "react-router-dom";
 import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,9 +25,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-function JobPage() {
+function JobPage({deleteJob}) {
   const { id } = useParams();
   const job = useLoaderData();
+  const navigate = useNavigate();
+
+  function onDeleteClick(id) {
+    deleteJob(id);
+    navigate('/dashboard')
+  }
 
   return (
     <Container>
@@ -37,11 +43,11 @@ function JobPage() {
             to="/dashboard"
             className="hover:text-indigo-200 flex items-center transition duration-1 00"
           >
-            <FaArrowLeft className="mr-2"/> Back to Job Listings
+            <FaArrowLeft className="mr-2" /> Back to Job Listings
           </Link>
         </div>
       </section>
-    
+
       <div className="grid sm:grid-cols-1 gap-2 pl-2 pr-2 grid-flow-row">
         <div className="grid gap-2 grid-cols">
           <Card className="p-5">
@@ -87,7 +93,9 @@ function JobPage() {
             <CardHeader>
               <CardTitle>Manage Job</CardTitle>
               <div className="grid sm:grid-cols-1 md:grid-cols-8 gap-2 pt-4">
-                <Button className="w-23">Edit Job</Button>
+                <Link to={`/edit-job/${job.id}`} className="w-23">
+                  <Button className="w-[100%]">Edit Job</Button>
+                </Link>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button className="w-23" variant="outline">
@@ -106,7 +114,7 @@ function JobPage() {
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
+                      <AlertDialogAction onClick={() => onDeleteClick(job.id)}>Continue</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
