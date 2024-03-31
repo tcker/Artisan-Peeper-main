@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-mongoose.connect("mongodb://localhost:27017")
+mongoose.connect("mongodb+srv://admin:admin1234@byte.rgaitbr.mongodb.net/artisan-peeper?retryWrites=true&w=majority&appName=byte")
 mongoose.connection.once("open", () => console.log("Now connected to MongoDB Atlas"))
 
 app.use("/users", require("./routes/userRoute"))
