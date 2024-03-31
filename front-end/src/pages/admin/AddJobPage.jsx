@@ -2,6 +2,7 @@ import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "react-toastify";
 
 import {
   Card,
@@ -47,7 +48,9 @@ function AddJobPage({addJobSubmit}) {
     };
 
     addJobSubmit(newJob);
+    toast.success('Job Added Successfully!')
     return navigate('/dashboard');
+    
   };
 
   return (

@@ -2,6 +2,7 @@ import Container from "@/components/Container.jsx";
 import { useParams, useLoaderData } from "react-router-dom";
 import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -32,7 +33,9 @@ function JobPage({deleteJob}) {
 
   function onDeleteClick(id) {
     deleteJob(id);
+    toast.success('Job Deleted Successfully!')
     navigate('/dashboard')
+
   }
 
   return (

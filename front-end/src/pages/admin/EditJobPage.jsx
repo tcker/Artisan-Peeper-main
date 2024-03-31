@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {toast} from 'react-toastify'
 
 import {
   Card,
@@ -51,6 +52,7 @@ function EditJobPage({updateJobSubmit}) {
     };
 
     updateJobSubmit(updatedJob);
+    toast.success('Job Updated Successfully!')
     return navigate('/dashboard');
   }
   
