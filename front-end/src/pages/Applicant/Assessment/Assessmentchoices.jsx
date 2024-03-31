@@ -1,5 +1,5 @@
 import React from 'react'
-import AreaCard from '@/components/ui/AreaCard'
+import AreaCard from '@/components/AreaCard'
 import scores from '../../../scores.json'
 
 const Assessmentchoices = () => {

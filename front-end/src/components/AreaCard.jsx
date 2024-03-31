@@ -10,7 +10,7 @@ import {
   CameraAlertHeader,
   CameraAlertTitle,
   CameraAlertTrigger,
-} from "@/components/ui/CameraAlert.jsx"
+} from "@/components/CameraAlert.jsx"
 
 
 const Question = ({ title, score, upto }) => {

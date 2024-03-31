@@ -1,4 +1,4 @@
-import ErrorMSG from "@/components/ui/ErrorMSG.jsx";
+import ErrorMSG from "@/components/ErrorMSG.jsx";
 
 function NotFoundPage() {
   return (

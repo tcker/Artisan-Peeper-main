@@ -1,7 +1,7 @@
 import React from 'react'
-import Question from '@/components/ui/Question.jsx'
-import QuestionNav from '@/components/ui/QuestionNav'
-import Camera from '@/components/ui/Camera.jsx'
+import Question from '@/components/Question.jsx'
+import QuestionNav from '@/components/QuestionNav'
+import Camera from '@/components/Camera.jsx'
 
 
 const Assessment = () => {
