@@ -24,6 +24,8 @@ import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboar
 
 // Admin Side Import
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
+import AddJobPage from "./pages/Admin/AddJobPage.jsx";
+import EditJobPage from "./pages/Admin/EditJobPage.jsx";
 export const HideAssessmentContext = createContext();
 
 // Theming Import
@@ -31,10 +33,41 @@ import { ThemeProvider } from "./components/theme-provider.jsx";
 
 function App() {
 
-  const [isAuthenticated, setIsAuthenticated] = useState(true)
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  // Add New Job
+  const addJob = async (newJob) => {
+    const res = await fetch('/api/jobs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newJob),
+    });
+    return;
+  }
+
+  // Delete Job
+  const deleteJob = async (id) => {
+    const res = await fetch(`/api/jobs/${id}`, {
+      method: 'DELETE'
+    });
+    return;
+  }
+
+  // Update Job
+  const updateJob = async (job) => {
+    const res = await fetch(`/api/jobs/${job.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(job),
+    });
+    return;
+  }
 
   const router = createBrowserRouter (
     createRoutesFromElements (
@@ -44,10 +77,10 @@ function App() {
         <Route path="/register" element={<SignUpPage/>}/>
 
         {/* Authentication Global Access */}
-        {isAuthenticated? (
+        {isAuthenticated ? (
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
-              <Route path='/jobs/:id' element={<JobPage/>} loader={jobLoader}/>
+              <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>} loader={jobLoader}/>
             </Route>
           </>
         ) : (
@@ -71,8 +104,13 @@ function App() {
         {/* Admin Authentication */}
         {isAuthenticated && isAdmin ? (
           <>
-            <Route path='/' element={<MainLayout/>}/>
-            <Route path='/dashboard' element={<AdminDashboard/>}/>
+            <Route path='/' element={<MainLayout isAdmin={isAdmin}/>}>
+              <>
+                <Route path='/dashboard' element={<AdminDashboard/>}/>
+                <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
+                <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
+              </>
+            </Route>
           </>
         ) : (
           ''
@@ -99,7 +137,8 @@ function App() {
   
   return (
     <>
-      <ThemeProvider>
+      {/*This is for Light/Dark Mode */}
+      <ThemeProvider> 
         <RouterProvider router={router}/>
       </ThemeProvider>
     </>

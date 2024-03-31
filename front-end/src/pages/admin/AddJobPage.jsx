@@ -1,4 +1,3 @@
-import { useLoaderData, useParams } from "react-router-dom"
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,26 +16,23 @@ import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function EditJobPage({updateJobSubmit}) {
-  const job = useLoaderData();
-  const navigate = useNavigate();
-  const {id} = useParams();
+function AddJobPage({addJobSubmit}) {
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("Full-Time");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
+  const [salary, setSalary] = useState("Under $50K");
+  const [companyName, setCompanyName] = useState("");
+  const [companyDescription, setCompanyDescription] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactPhone, setContactPhone] = useState("");
 
-  const [title, setTitle] = useState(job.title);
-  const [type, setType] = useState(job.type);
-  const [location, setLocation] = useState(job.location);
-  const [description, setDescription] = useState(job.description);
-  const [salary, setSalary] = useState(job.salary);
-  const [companyName, setCompanyName] = useState(job.company.name);
-  const [companyDescription, setCompanyDescription] = useState(job.company.description);
-  const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
-  const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
+  const navigate = useNavigate();
 
   const formSubmit = (e) => {
     e.preventDefault();
 
-    const updatedJob = {
-      id,
+    const newJob = {
       title,
       type,
       location,
@@ -50,10 +46,10 @@ function EditJobPage({updateJobSubmit}) {
       },
     };
 
-    updateJobSubmit(updatedJob);
+    addJobSubmit(newJob);
     return navigate('/dashboard');
-  }
-  
+  };
+
   return (
     <Container>
       <div className="pl-2 pr-2 justify-center flex items-center">
@@ -188,13 +184,13 @@ function EditJobPage({updateJobSubmit}) {
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline">Cancel</Button>
-              <Button  type="submit">Update Job</Button>
+              <Button type="submit">Post Job</Button>
             </CardFooter>
           </form>
         </Card>
       </div>
     </Container>
-  )
+  );
 }
 
-export default EditJobPage
+export default AddJobPage;
