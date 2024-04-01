@@ -70,7 +70,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
             className={arrowStyle}
           />
         )}
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 mb-5">
           <img src={logo} className="cursor-pointer w-16 duration-500" />
           <h1
             className={`text-white origin-left font-medium text-xl duration-300 ${

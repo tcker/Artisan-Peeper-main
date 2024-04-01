@@ -20,7 +20,7 @@ const Question = ({ title, score, upto }) => {
   // }
 
   return (
-    <div className={'flex flex-col justify-center h-64 w-72 p-7 bg-white border-2 border-slate-400 rounded-xl hover:scale-105 focus:scale-110 ease-in-out dark:bg-slate-950 dark:border-slate-600 hover:border-indigo-800 hover:border-4'}>
+    <div className={'flex flex-col justify-center h-64 w-72 p-7 bg-white border-2 border-slate-200 rounded-xl hover:scale-105 focus:scale-110 ease-in-out dark:bg-slate-950 dark:border-slate-600 hover:border-indigo-800 hover:border-4 delay-75'}>
         <div className='flex justify-end'>{score}/{upto}
         </div>
         <span className='col-start-1 col-end-4 mb-2 pb-2 text-3xl hover:text-slate-700 font-bold border-b-2 border-black dark:border-white text-wrap dark:text-white dark:hover:text-slate-200'>{title}</span>

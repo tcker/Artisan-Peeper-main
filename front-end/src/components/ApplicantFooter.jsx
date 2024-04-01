@@ -14,16 +14,16 @@ const ApplicantFooter = () => {
 
             <img src={Logo} className="h-20 w-auto sm:block md:inline self-center"/>
             <div className="inline-flex flex-col">
-              <p className="inline ml-5 mt-3 bg-black text-white dark:bg-slate-200 dark:text-black py-1 px-14 rounded-3xl">ARTISAN PEEPER</p>
-              <p class="inline text-sm ml-6 mt-2 tracking-wide">AUTOMATED EMPLOYMENT MODEL</p>
-            </div>
+              <p className="inline ml-5 mt-3 bg-black text-white dark:bg-indigo-500 py-1 px-14 rounded-3xl">ARTISAN PEEPER</p>
+              <p class="inline text-sm ml-6 mt-2 tracking-wide font-semibold">AUTOMATED EMPLOYMENT MODEL</p>
+            </div>  
 
           </div> 
-          <div className='flex flex-col gap-3 my-5 md:flex-row md:my-0 md:gap-7'>
-              <p><Link to="/dashboard">Explore</Link></p>
-              <p><Link>Assessment</Link></p>
-              <p><Link>Status</Link></p>
-              <p><Link to="/login">Log-out</Link></p>
+          <div className='flex flex-col gap-3 my-5 md:flex-row md:my-0 md:gap-7 '>
+              <p className='hover:text-blue-500'><Link to="/dashboard">Explore</Link></p>
+              <p className='hover:text-blue-500'><Link to="/assessment-dashboard">Assessment</Link></p>
+              <p className='hover:text-blue-500'><Link>Status</Link></p>
+              <p className='hover:text-blue-500'><Link to="/login">Log-out</Link></p>
           </div>
 
           <div>
