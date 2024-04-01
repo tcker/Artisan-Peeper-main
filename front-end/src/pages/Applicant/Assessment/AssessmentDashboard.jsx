@@ -1,4 +1,5 @@
 import Container from "@/components/Container.jsx";
+import { Link } from "react-router-dom"
 
 import {
   Card,
@@ -128,7 +129,7 @@ function AssessmentDashboard() {
           </CardHeader>
           <CardFooter className="flex flex-row">
             <CardContent>
-              <Button>I agree and proceed to the assessment</Button>
+              <Button><Link to="/assessment-areas">I agree and proceed to the assessment</Link></Button>
             </CardContent>
           </CardFooter>
         </Card>

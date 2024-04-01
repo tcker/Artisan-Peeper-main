@@ -21,6 +21,8 @@ import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 
 // Applicant Assessment
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
+import Assessmentchoices from "./pages/Applicant/Assessment/Assessmentchoices.jsx"
+import Assessment from "./pages/Applicant/Assessment/Assessment.jsx"
 
 // Admin Side Import
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
@@ -121,7 +123,9 @@ function App() {
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
               <>
-                <Route path='assessment-dashboard' element={<AssessmentDashboard/>}/>
+                <Route path='/assessment-dashboard' element={<AssessmentDashboard/>}/>
+                <Route path='/assessment-areas' element={<Assessmentchoices/>}/>
+                <Route path='/assessment-start' element={<Assessment/>}/>
               </>
             </Route>
           </>
