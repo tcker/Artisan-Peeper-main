@@ -57,7 +57,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
       <div
         className={`${
           openSidebar ? "w-72" : "w-20"
-        } duration-300 h-[calc(100vh+100px)] bg-indigo-500 relative p-5 pt-8`}
+        } duration-300 h-[calc(100vh+100px)] bg-indigo-500 relative p-5 pt-8 z-50`}
       >
         {!openSidebar ? (
           <HiChevronRight

@@ -11,7 +11,7 @@ function MainLayout({isAssessmentOpen, isAdmin}) {
       <Navbar isAssessmentOpen={isAssessmentOpen} isAdmin={isAdmin}/>
       <Outlet/>
       <ToastContainer/>
-      <ApplicantFooter/>
+      <ApplicantFooter isAssessmentOpen={isAssessmentOpen} isAdmin={isAdmin}/>
     </>
   )
 }
