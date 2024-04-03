@@ -27,7 +27,7 @@ const authenticate = asyncHandler ( async(req, res, next) => {
 
 })
 
-const authenticateAdmin = asyncHandler( async(res, req, next) => {
+const authenticateAdmin = asyncHandler( async(req, res, next) => {
   if(req.user.isAdmin){
     next();
   } else {
