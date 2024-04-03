@@ -6,7 +6,7 @@ import {
   getCurrentUserProfile,
   updateCurrentUserProfile
 } from "../controllers/userController.js"
-import { authenticate } from "../auth.js"
+import { authenticate, authenticateAdmin } from "../auth.js"
 
 const router = express.Router();
 
