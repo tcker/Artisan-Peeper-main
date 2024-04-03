@@ -13,17 +13,12 @@ import {
 } from "@/components/CameraAlert.jsx"
 
 
-const Question = ({ title, score, upto }) => {
-  // const [Passed, setPassed] = useState(false);
-  // if (!Passed) {
-    
-  // }
-
+const Question = ({ scorez }) => {
   return (
-    <div className={'flex flex-col justify-center h-64 w-72 p-7 bg-white border-2 border-slate-200 rounded-xl hover:scale-105 focus:scale-110 ease-in-out dark:bg-slate-950 dark:border-slate-600 hover:border-indigo-800 hover:border-4 delay-75'}>
-        <div className='flex justify-end'>{score}/{upto}
+    <div className={'flex flex-col justify-center h-64 w-72 p-7 bg-white border-2 border-slate-200 rounded-xl  ease-in-out dark:bg-slate-950 dark:border-slate-600 hover:bg-indigo-200 hover:border-indigo-800 hover:border-4 delay-75 dark:hover:bg-indigo-950 transition '}>
+        <div className='flex justify-end'>{scorez.score}/{scorez.upto}
         </div>
-        <span className='col-start-1 col-end-4 mb-2 pb-2 text-3xl hover:text-slate-700 font-bold border-b-2 border-black dark:border-white text-wrap dark:text-white dark:hover:text-slate-200'>{title}</span>
+        <span className='col-start-1 col-end-4 mb-2 pb-2 text-3xl hover:text-slate-700 font-bold border-b-2 border-black dark:border-white text-wrap dark:text-white dark:hover:text-slate-200'>{scorez.title}</span>
         <div className='flex mt-2 mb-3 gap-2'>
           <div className='py-1 px-2 bg-slate-200 dark:bg-slate-800 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700'>10+ Questions</div>
           <div className='py-1 px-2 bg-slate-200 dark:bg-slate-800 rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700'>30 min</div>
@@ -39,7 +34,7 @@ const Question = ({ title, score, upto }) => {
               </CameraAlertHeader>
                 <CameraAlertFooter>
                   <CameraAlertCancel>Cancel</CameraAlertCancel>
-                  <CameraAlertAction><Link to="/assessment-start">Continue</Link></CameraAlertAction>
+                  <CameraAlertAction><Link to={`/assessment-start/${scorez.id}`}>Continue</Link></CameraAlertAction>
                 </CameraAlertFooter>
             </CameraAlertContent>
         </CameraAlert>
