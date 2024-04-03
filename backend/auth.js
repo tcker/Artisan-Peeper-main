@@ -1,54 +1,38 @@
-const jwt = require("jsonwebtoken");
-const secret = "Hackathon"
+import jwt from "jsonwebtoken"
+import User from "./models/userModel.js"
+import asyncHandler from "express-async-handler"
 
-module.exports.createAccessToken = (user) => {
-  const data = {
-    id: user._id,
-    email: user.email,
-    isAdmin: user.isAdmin
-  };
-  return jwt.sign(data, secret, {
-    expiresIn: '30d'
-  })
-}
+const authenticate = asyncHandler ( async(req, res, next) => {
+  let token = req.cookies.jwt
 
-module.exports.verify = (req, res, next) => {
-  console.log(req.headers.authorization);
+  if(token){
+    try{
 
-  let token = req.headers.authorization;
+      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      req.user = await User.findById(decoded.userId).select("-password")
+      next()
 
-  console.log(token);
+    } catch(error){
 
-  if(typeof token == "undefined"){
-    return res.send({ auth: "Failed. No Token!"});
+      res.status(401)
+      throw new Error("Not authorized, token failed.")
+
+    }
   } else {
-    token = token.slice(7, token.length);
-    console.log(token);
 
-    jwt.verify(token, secret, function(err, decodedToken){
-      if(err){
-        return res.send({
-          auth: "Failed",
-          message: err.message
-        })
-      } else {
-        console.log(req.user)
-        console.log(decodedToken)
-        req.user = decodedToken
-        next()
-      }
-    })
+    res.status(401)
+    throw new Error("Not authorize, no token.") 
+
   }
-}
 
-module.exports.verifyAdmin = (req, res, next) => {
-  
+})
+
+const authenticateAdmin = asyncHandler( async(req, res, next) => {
   if(req.user.isAdmin){
-    next()
+    next();
   } else {
-    return res.send({
-      auth: "Failed",
-      message: "Action Forbidden"
-    })
+    res.status(401).send("Not authorized as an admin")
   }
-}
+})
+
+export { authenticate, authenticateAdmin }
