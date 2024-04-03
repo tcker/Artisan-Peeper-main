@@ -1,19 +1,23 @@
-const express = require("express")
-const mongoose = require("mongoose")
-const cors = require("cors")
-const port = 4000
+import path from "path"
+import express from "express"
+import dotenv from "dotenv"
+import cookieParser from "cookie-parser"
 
+import connectDB from "./db.js"
+import userRoute from "./routes/userRoute.js"
+
+dotenv.config()
+const port = process.env.PORT || 4000
+
+connectDB()
 const app = express()
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cookieParser())
 
-mongoose.connect("mongodb+srv://admin:admin1234@byte.rgaitbr.mongodb.net/artisan-peeper?retryWrites=true&w=majority&appName=byte")
-mongoose.connection.once("open", () => console.log("Now connected to MongoDB Atlas"))
+app.use("/users", userRoute)
 
-app.use("/users", require("./routes/userRoute"))
+app.listen(port, () => console.log(`API is now online on port ${port}`))
 
-if(require.main == module){
-  app.listen(port, () => console.log(`API is now online on port ${port}`))
-}
 
