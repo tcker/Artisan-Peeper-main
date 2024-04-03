@@ -4,6 +4,8 @@ import {
   loginUser,
   logoutCurrentUser
 } from "../controllers/userController.js"
+import { authenticate } from "../auth.js"
+
 const router = express.Router();
 
 router.post("/register", registerUser)
