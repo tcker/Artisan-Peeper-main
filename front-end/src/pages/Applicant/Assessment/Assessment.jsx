@@ -3,6 +3,7 @@ import QuestionNav from '@/components/QuestionNav'
 import Camera from '@/components/Camera.jsx'
 import Question from '@/components/Question.jsx'
 import { Button } from '@/components/ui/button'
+import Try from '@/components/Try.jsx'
 
 const Assessment = () => {
   return (
@@ -15,6 +16,7 @@ const Assessment = () => {
       <div className='flex flex-col gap-10 bg-indigo-600 px-10 pt-5'>
       <span className='pb-2 text-2xl text-wrap border-b-[1px] text-white border-white w-full'>
         Teamwork</span>
+        <Try />
         <Question />
         <Question />
         <Question />
