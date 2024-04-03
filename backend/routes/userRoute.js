@@ -3,7 +3,8 @@ import {
   registerUser, 
   loginUser,
   logoutCurrentUser,
-  getCurrentUserProfile
+  getCurrentUserProfile,
+  updateCurrentUserProfile
 } from "../controllers/userController.js"
 import { authenticate } from "../auth.js"
 
@@ -16,5 +17,6 @@ router.post("/logout", logoutCurrentUser)
 router
   .route("/profile")
   .get(authenticate, getCurrentUserProfile)
-
+  .put(authenticate, updateCurrentUserProfile)
+  
 export default router;
