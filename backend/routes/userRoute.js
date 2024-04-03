@@ -4,7 +4,8 @@ import {
   loginUser,
   logoutCurrentUser,
   getCurrentUserProfile,
-  updateCurrentUserProfile
+  updateCurrentUserProfile,
+  showAllUsers
 } from "../controllers/userController.js"
 import { authenticate, authenticateAdmin } from "../auth.js"
 
@@ -19,4 +20,6 @@ router
   .get(authenticate, getCurrentUserProfile)
   .put(authenticate, updateCurrentUserProfile)
   
+router.get("/showAllUsers", authenticate, authenticateAdmin, showAllUsers)
+
 export default router;

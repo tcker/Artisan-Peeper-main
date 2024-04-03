@@ -116,10 +116,16 @@ const updateCurrentUserProfile = asyncHandler( async(req, res) => {
   }
 })
 
+const showAllUsers = asyncHandler( async(req, res) => {
+  const users = await User.find({})
+  res.json(users)
+})
+
 export {
   registerUser,
   loginUser,
   logoutCurrentUser,
   getCurrentUserProfile,
-  updateCurrentUserProfile
+  updateCurrentUserProfile,
+  showAllUsers
 }
