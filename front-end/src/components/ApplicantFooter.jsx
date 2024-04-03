@@ -4,7 +4,7 @@ import lightdiscord from '../assets/lightdiscord.svg';
 import lightgit from '../assets/lightgit.svg';
 import { Link } from 'react-router-dom';
 
-const ApplicantFooter = () => {
+const ApplicantFooter = ({ isAssessmentOpen, isAdmin }) => {
   
   return (
     <>
@@ -21,7 +21,12 @@ const ApplicantFooter = () => {
           </div> 
           <div className='flex flex-col gap-3 my-5 md:flex-row md:my-0 md:gap-7 '>
               <p className='hover:text-blue-500'><Link to="/dashboard">Explore</Link></p>
-              <p className='hover:text-blue-500'><Link to="/assessment-dashboard">Assessment</Link></p>
+              {isAssessmentOpen ? 
+              (<p className='hover:text-blue-500'><Link to="/assessment-dashboard">Assessment</Link></p>) 
+              : ('') }
+              {isAdmin ? 
+              (<p className='hover:text-blue-500'><Link to="/add-job">Add Job</Link></p>) 
+              : ('') }
               <p className='hover:text-blue-500'><Link>Status</Link></p>
               <p className='hover:text-blue-500'><Link to="/login">Log-out</Link></p>
           </div>

@@ -126,6 +126,7 @@ function App() {
                 <Route path='/assessment-dashboard' element={<AssessmentDashboard/>}/>
                 <Route path='/assessment-areas' element={<Assessmentchoices/>}/>
                 <Route path='/assessment-start' element={<Assessment/>}/>
+                <Route path='/assessment-start/:id' element={<Assessment/>}/>
               </>
             </Route>
           </>
