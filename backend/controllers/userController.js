@@ -71,8 +71,25 @@ const logoutCurrentUser = asyncHandler( async(req, res) => {
   res.status(200).json({ message: "Logged out successfully -cookie removed-" })
 })
 
+const getCurrentUserProfile = asyncHandler( async(req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if(user){
+    res.json({
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email
+    })
+  } else {
+    res.status(404)
+    throw new Error("User not found")
+  }
+})
+
 export {
   registerUser,
   loginUser,
-  logoutCurrentUser
+  logoutCurrentUser,
+  getCurrentUserProfile
 }
