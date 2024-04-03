@@ -26,7 +26,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
             value="option1"
             checked={selectedOption === 'option1'}
             onChange={handleOptionChange}> 
-            <label className="mr-1" for='a1' >A. {answerA}</label>
+            <label className="mr-1" for='a1'>A. {answerA}</label>
             <input 
               type='radio' 
               id='a1' 

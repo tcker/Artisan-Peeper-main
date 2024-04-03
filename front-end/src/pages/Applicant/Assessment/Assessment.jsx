@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 const Assessment = () => {
   return (
-    <div className='ml-20 grid gap-x-5 sm:ml-20 md:ml-28 md:mr-10 lg:mr-0 lg:grid-cols-[0.7fr_1fr] xl:grid-cols-[0.6fr_1fr] 2xl:grid-cols-[0.5fr_1fr] 2xl:ml-13'>
+    <div className='ml-20 grid gap-x-5 sm:ml-20 md:ml-28 md:mr-10 lg:mr-0 lg:grid-cols-[0.7fr_1fr] xl:grid-cols-[0.6fr_1fr] 2xl:grid-cols-[0.6fr_1fr] 2xl:ml-13'>
       <div></div>
       <div className='sm:static lg:fixed lg:ml-5 xl:ml-20 mt-10 flex flex-col gap-4'>
         <Camera/>
