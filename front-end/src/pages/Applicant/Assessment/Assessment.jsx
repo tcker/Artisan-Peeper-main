@@ -3,7 +3,6 @@ import QuestionNav from '@/components/QuestionNav'
 import Camera from '@/components/Camera.jsx'
 import Question from '@/components/Question.jsx'
 import { Button } from '@/components/ui/button'
-import Try from '@/components/Try.jsx'
 
 const Assessment = () => {
   return (
