@@ -121,11 +121,29 @@ const showAllUsers = asyncHandler( async(req, res) => {
   res.json(users)
 })
 
+const deleteUserById = asyncHandler( async(req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if(user){
+    if(user.isAdmin){
+      res.status(400)
+      throw new Error("Cannot delete admin user")
+    }
+
+    await User.deleteOne({_id: user._id})
+    res.json({message: "User removed"})
+  } else {
+    res.status(404)
+    throw new Error("User not found")
+  }
+})
+
 export {
   registerUser,
   loginUser,
   logoutCurrentUser,
   getCurrentUserProfile,
   updateCurrentUserProfile,
-  showAllUsers
+  showAllUsers,
+  deleteUserById
 }
