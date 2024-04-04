@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import {Link} from 'react-router-dom'
 
 const invoices = [
   {
@@ -33,42 +34,42 @@ const invoices = [
     totalAmount: "65%",
   },
   {
-    invoice: "INV001",
+    invoice: "INV004",
     CV: "Success",
     assessment: "Failed",
     name: "Fabella, Emmanuel T.",
     totalAmount: "55%",
   },
   {
-    invoice: "INV002",
+    invoice: "INV005",
     CV: "Pending",
     assessment: "Failed",
     name: "Raizen Vahn Cedrick Sanchez",
     totalAmount: "25%",
   },
   {
-    invoice: "INV003",
+    invoice: "INV006",
     CV: "Failed",
     name: "Marcus Zach Lestat Guttierez Rancio",
     assessment: "Success",
     totalAmount: "65%",
   },
   {
-    invoice: "INV001",
+    invoice: "INV007",
     CV: "Success",
     assessment: "Failed",
     name: "Fabella, Emmanuel T.",
     totalAmount: "55%",
   },
   {
-    invoice: "INV002",
+    invoice: "INV008",
     CV: "Pending",
     assessment: "Failed",
     name: "Raizen Vahn Cedrick Sanchez",
     totalAmount: "25%",
   },
   {
-    invoice: "INV003",
+    invoice: "INV009",
     CV: "Failed",
     name: "Marcus Zach Lestat Guttierez Rancio",
     assessment: "Success",
@@ -78,7 +79,7 @@ const invoices = [
  
 const TablePassing = () => {
   return (
-    <Table className="w-[850px]">
+    <Table className="w-full md:w-full lg:w-[850px] ">
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
@@ -95,7 +96,7 @@ const TablePassing = () => {
             <TableCell className="font-medium">{invoice.invoice}</TableCell>
             <TableCell>{invoice.CV}</TableCell>
             <TableCell>{invoice.assessment}</TableCell>
-            <TableCell>{invoice.name}</TableCell>
+            <TableCell><Link to="/view-user">{invoice.name}</Link></TableCell>
             <TableCell className="[200px]">{invoice.totalAmount}</TableCell>
           </TableRow>
         ))}

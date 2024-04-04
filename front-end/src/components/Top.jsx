@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table.jsx"
+import {Link} from 'react-router-dom'
 
 const invoices = [
   {
@@ -60,7 +61,7 @@ const invoices = [
  
 const Top = () => {
   return (
-    <Table className="w-[400px] overflow-auto">
+    <Table className="w-full md:w-full lg:w-[400px] ">
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
@@ -73,7 +74,7 @@ const Top = () => {
         {invoices.map((invoice) => (
           <TableRow key={invoice.invoice}>
             <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.name}</TableCell>
+            <TableCell><Link to="/view-user">{invoice.name}</Link></TableCell>
             <TableCell className="[200px]">{invoice.totalAmount}</TableCell>
           </TableRow>
         ))}

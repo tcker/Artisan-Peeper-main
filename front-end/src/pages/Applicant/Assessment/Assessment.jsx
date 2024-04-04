@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Toaster, toast } from 'react-hot-toast'; 
 
 const Assessment = () => {
-  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(true);
+  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(false);
   const [terminated, setTerminated] = useState(false);
   const tabSwitchCountRef = useRef(0);
 

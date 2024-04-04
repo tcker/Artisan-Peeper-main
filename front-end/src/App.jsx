@@ -28,6 +28,7 @@ import Assessment from "./pages/Applicant/Assessment/Assessment.jsx"
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
 import AddJobPage from "./pages/Admin/AddJobPage.jsx";
 import EditJobPage from "./pages/Admin/EditJobPage.jsx";
+import ViewUser from './pages/Admin/ViewUser.jsx';
 export const HideAssessmentContext = createContext();
 
 // Theming Import
@@ -36,8 +37,8 @@ import { ThemeProvider } from "./components/theme-provider.jsx";
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   // Add New Job
   const addJob = async (newJob) => {
@@ -109,6 +110,7 @@ function App() {
             <Route path='/' element={<MainLayout isAdmin={isAdmin}/>}>
               <>
                 <Route path='/dashboard' element={<AdminDashboard/>}/>
+                <Route path='/view-user' element={<ViewUser/>}/>
                 <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
                 <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
               </>
