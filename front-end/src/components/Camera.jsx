@@ -63,8 +63,8 @@ const Camera = () => {
   };
 
   return (
-    <div className='flex h-48 sm:h-full lg:w-72 bg-black rounded-xl text-white p-5 border-[1px] border-gray dark:border-white dark:bg-slate-500 items-end'>
-      <video ref={videoRef} className="w-full h-full" autoPlay playsInline style={{ transform: 'scaleX(-1)' }}></video>
+    <div className='flex bg-black rounded-xl text-whiteborder-[1px] border-gray dark:border-white dark:bg-slate-500 justify-center items-center'>
+      <video ref={videoRef} className="w-[100%] rounded-lg" autoPlay playsInline style={{ transform: 'scaleX(-1)' }}></video>
     </div>
   );
 };
