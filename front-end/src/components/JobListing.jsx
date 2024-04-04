@@ -22,11 +22,13 @@ function JobListing() {
   }, []);
 
   return (
-    <div className="flex justify-center align-center overflow-hidden pl-2 pr-2">
-      <div className="grid md:grid-cols-2 md:justify-center md:align-center xl:grid-cols-4 gap-6">
-        {jobs.map((job) => (
-          <JobCard key={job.id} job={job} />
-        ))}
+    <div className="min-h-screen flex justify-center items-center py-2">
+      <div className="flex justify-center align-center overflow-hidden pl-2 pr-2">
+        <div className="grid md:grid-cols-2 md:justify-center md:align-center xl:grid-cols-4 gap-6">
+          {jobs.map((job) => (
+            <JobCard key={job.id} job={job} />
+          ))}
+        </div>
       </div>
     </div>
   );

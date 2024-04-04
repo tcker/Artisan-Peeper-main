@@ -1,32 +1,38 @@
-import React from 'react'
-import QuestionNav from '@/components/QuestionNav'
-import Camera from '@/components/Camera.jsx'
-import Question from '@/components/Question.jsx'
-import { Button } from '@/components/ui/button'
+import QuestionNav from "@/components/QuestionNav";
+import Container from "@/components/Container.jsx";
+import Camera from "@/components/Camera.jsx";
+import Question from "@/components/Question.jsx";
+import { Button } from "@/components/ui/button";
 
 const Assessment = () => {
   return (
-    <div className='ml-20 grid gap-x-5 sm:ml-20 md:ml-28 md:mr-10 lg:mr-0 lg:grid-cols-[0.7fr_1fr] xl:grid-cols-[0.6fr_1fr] 2xl:grid-cols-[0.6fr_1fr] 2xl:ml-13'>
-      <div></div>
-      <div className='sm:static lg:fixed lg:ml-5 xl:ml-20 mt-10 flex flex-col gap-4'>
-        <Camera/>
-        <QuestionNav  />
+    <Container>
+      <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen">
+        <div className="border-in grid justify-center items-center">
+          <div className="grid gap-4">
+            <Camera />
+            <QuestionNav />
+          </div>
+        </div>
+        <div className="flex flex-col gap-10 pt-5 overflow-hidden">
+          <span className="pb-2 text-2xl text-wrap border-b-[1px] w-full">
+            Teamwork
+          </span>
+          <div className="h-[calc(70vh+100px)] overflow-scroll grid gap-4">
+            <Question />
+            <Question />
+            <Question />
+            <Question />
+            <Question />
+            <Question />
+            <Question />
+            <Question />
+            <Button className="mt-10 mb-10 w-[100%]">Submit</Button>
+          </div>
+        </div>
       </div>
-      <div className='flex flex-col gap-10 bg-indigo-600 px-10 pt-5'>
-      <span className='pb-2 text-2xl text-wrap border-b-[1px] text-white border-white w-full'>
-        Teamwork</span>
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Question />
-        <Button className="mb-10">Submit</Button>
-      </div>
-    </div>
-  )
-}
+    </Container>
+  );
+};
 
-export default Assessment
+export default Assessment;

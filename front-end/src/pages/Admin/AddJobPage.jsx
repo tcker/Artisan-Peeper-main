@@ -55,7 +55,7 @@ function AddJobPage({addJobSubmit}) {
 
   return (
     <Container>
-      <div className="pl-2 pr-2 justify-center flex items-center">
+      <div className="pl-2 pr-2 justify-center flex items-center min-h-screen py-2">
         <Card className="w-[800px]">
           <form onSubmit={formSubmit}>
             <CardHeader>
