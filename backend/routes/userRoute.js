@@ -7,7 +7,8 @@ import {
   updateCurrentUserProfile,
   showAllUsers,
   deleteUserById,
-  getUserById
+  getUserById,
+  updateUserById
 } from "../controllers/userController.js"
 import { authenticate, authenticateAdmin } from "../auth.js"
 
@@ -28,5 +29,6 @@ router
   .route("/:id")
   .delete(authenticate, authenticateAdmin, deleteUserById)
   .get(authenticate, authenticateAdmin, getUserById)
+  .put(authenticate, authenticateAdmin, updateUserById)
 
 export default router;

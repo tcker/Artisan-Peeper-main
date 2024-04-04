@@ -149,6 +149,27 @@ const getUserById = asyncHandler( async(req, res) => {
   }
 })
 
+const updateUserById = asyncHandler( async(req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if(user){
+    user.firstName = req.body.firstName || user.firstName
+    user.lastName = req.body.lastName || user.lastName
+    user.email = req.body.email || user.email
+    user.isAdmin = Boolean(req.body.isAdmin)
+    
+    const updatedUser = await user.save()
+
+    res.json({
+      _id: updatedUser._id,
+      firstName: updatedUser.firstName,
+      lastName: updatedUser.lastName,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin
+    })
+  }
+})
+
 export {
   registerUser,
   loginUser,
@@ -157,5 +178,6 @@ export {
   updateCurrentUserProfile,
   showAllUsers,
   deleteUserById,
-  getUserById
+  getUserById,
+  updateUserById
 }
