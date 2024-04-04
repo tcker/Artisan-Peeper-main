@@ -14,7 +14,7 @@ const Assessmentchoices = () => {
             className="grid md:grid-cols-4 gap-4"
           >
             {scores.map((scorez) => (
-              <AreaCard key={scores.id} scorez={scorez} />
+              <AreaCard key={scorez.id} scorez={scorez} />
             ))}
           </div>
         </div>

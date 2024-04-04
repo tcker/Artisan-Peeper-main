@@ -85,9 +85,8 @@ const TablePassing = () => {
         <TableRow>
           <TableHead className="w-[100px]">Job</TableHead>
           <TableHead className="w-[100px]">CV</TableHead>
-          <TableHead className="w-[100px]">Assessment</TableHead>
           <TableHead className="w-[200px]">Name</TableHead>
-          <TableHead className="w-[70px]">Rating</TableHead>
+          <TableHead className="w-[70px]">CV Rating</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -95,7 +94,6 @@ const TablePassing = () => {
           <TableRow key={invoice.invoice}>
             <TableCell className="font-medium">{invoice.invoice}</TableCell>
             <TableCell>{invoice.CV}</TableCell>
-            <TableCell>{invoice.assessment}</TableCell>
             <TableCell><Link to="/view-user">{invoice.name}</Link></TableCell>
             <TableCell className="[200px]">{invoice.totalAmount}</TableCell>
           </TableRow>

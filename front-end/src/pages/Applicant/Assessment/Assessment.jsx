@@ -7,7 +7,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Container from "@/components/Container.jsx";
 
 const Assessment = () => {
-  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(false);
+  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(true);
   const [terminated, setTerminated] = useState(false);
   const tabSwitchCountRef = useRef(0);
 
