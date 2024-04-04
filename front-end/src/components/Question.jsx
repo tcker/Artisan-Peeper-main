@@ -17,7 +17,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
   return (
     <div className='flex flex-col gap-3'>
     <span className='py-2 px-3 bg-indigo-500 w-max rounded-md text-slate-300 font-bold'>QUESTION #{no}: </span>
-    <div className='flex p-3 max-w-auto justify-center bg-slate-100 rounded-lg dark:bg-slate-800'>
+    <div className='flex p-3 max-w-auto justify-center rounded-lg  bg-slate-100 dark:bg-slate-950 border-gray border-2'>
     <div className='px-2 py-1 w-full'>
       <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg bg-center bg-cover' style={backgroundchange}>` {question}</h1>
 
