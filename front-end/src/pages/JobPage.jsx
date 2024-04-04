@@ -42,7 +42,7 @@ function JobPage({deleteJob}) {
     <Container>
       <div className="py-4">
         <section>
-          <div className="containerpy-6 px-6 mb-2">
+          <div className="container py-6 px-6 mb-2">
             <Link
               to="/dashboard"
               className="hover:text-indigo-200 flex items-center transition duration-100"
