@@ -89,7 +89,7 @@ const Camera = () => {
   };
 
   return (
-    <div className='flex h-48 sm:h-full lg:w-72 bg-black rounded-xl text-white p-5 border-[1px] border-gray dark:border-white items-end'>
+    <div className='flex h-48 sm:h-full lg:w-96 bg-black rounded-xl text-white border-[1px] border-gray dark:border-white items-end'>
       <video ref={videoRef} className="w-full h-full" autoPlay playsInline style={{ transform: 'scaleX(-1)' }}></video>
       <div id="liveView" ref={liveViewRef} className="w-full"></div>
     </div>

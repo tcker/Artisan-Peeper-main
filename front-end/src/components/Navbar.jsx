@@ -45,7 +45,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
   const [openSidebar, setOpenSidebar] = useState(false);
 
   const arrowStyle =
-    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-500 rounded-full text-zinc-400";
+    "cursor-pointer absolute -right-3 top-9 border-2 text-2xl p-1 bg-white border-indigo-500 rounded-full text-zinc-400 z-50";
 
   const linkClass = ({ isActive }) =>
     isActive
