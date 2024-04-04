@@ -25,7 +25,7 @@ function AdminDashboard() {
             <TablePassing />
           </div>
           <div className="p-5 border-2 rounded-lg shadow-md">
-            <p className="text-xl font-bold mb-3">Passed Assessments</p>
+            <p className="text-xl font-bold mb-3">P`assed Assessments</p>
             <Top />
           </div>
         </div>
