@@ -14,7 +14,7 @@ function AdminDashboard() {
         <Total title="Total Applicants" total="163" added="+35"/>
         <Total title="CV Passing Applicants" total="106" added="+15"/>
         <Total title="Passed Assessment" total="56" added="+27"/>
-        <Total title="Total Passing" total="23" added="+"/>
+        <Total title="Total Passing" total="23" added="+3"/>
       </div>
       <div className="flex justify-center gap-7 flex-wrap my-7 mx-5">
         <div className="p-5 border-2 rounded-lg shadow-md">

@@ -2,7 +2,7 @@ import React from 'react'
 
 const AssessEval = () => {
   return (
-    <div>HELLOWORLD</div>
+    <div className='h-96 bg-white'>HELLOWORLD</div>
   )
 }
 
