@@ -38,12 +38,14 @@ const Assessment = () => {
       playTabSwitchAudio();
     }
 
+    // NOT YET FUNCTIONAL -RAM
     function playTabSwitchAudio() {
       const audio = new Audio("/DOTA Trashtalk.mp3");
       audio.play();
     }
-
-    window.addEventListener("blur", checkTabSwitch);
+    // NOT YET FUNCTIONAL -RAM
+    
+    window.addEventListener('blur', checkTabSwitch);
 
     window.addEventListener("focus", function () {
       clearTimeout(quizTimeout);
