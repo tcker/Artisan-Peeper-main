@@ -15,7 +15,7 @@ const ApplicantFooter = ({ isAssessmentOpen, isAdmin }) => {
             <img src={Logo} className="h-20 w-auto sm:block md:inline self-center"/>
             <div className="inline-flex flex-col">
               <p className="inline ml-5 mt-3 bg-black text-white dark:bg-indigo-500 py-1 px-14 rounded-3xl">ARTISAN PEEPER</p>
-              <p class="inline text-sm ml-6 mt-2 tracking-wide font-semibold">AUTOMATED EMPLOYMENT MODEL</p>
+              <p className="inline text-sm ml-6 mt-2 tracking-wide font-semibold">AUTOMATED EMPLOYMENT MODEL</p>
             </div>  
 
           </div> 

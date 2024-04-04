@@ -17,44 +17,44 @@ const invoices = [
     CV: "Success",
     assessment: "Failed",
     name: "Fabella, Emmanuel T.",
-    totalAmount: "$250.00",
+    totalAmount: "56/100",
   },
   {
     invoice: "INV002",
     CV: "Pending",
     assessment: "Failed",
     name: "Raizen Vahn Cedrick Sanchez",
-    totalAmount: "$150.00",
+    totalAmount: "67/100",
   },
   {
     invoice: "INV003",
     CV: "Failed",
     name: "Marcus Zach Lestat Guttierez Rancio",
     assessment: "Success",
-    totalAmount: "$350.00",
+    totalAmount: "85/100",
   },
   {
     invoice: "INV004",
     CV: "Success",
-    totalAmount: "$450.00",
+    totalAmount: "56/100",
     assessment: "Failed",
   },
   {
     invoice: "INV005",
     CV: "Success",
-    totalAmount: "$550.00",
+    totalAmount: "56/100",
     assessment: "Failed",
   },
   {
     invoice: "INV006",
     CV: "Pending",
-    totalAmount: "$200.00",
+    totalAmount: "56/100",
     assessment: "Success",
   },
   {
     invoice: "INV007",
     CV: "Failed",
-    totalAmount: "$300.00",
+    totalAmount: "56/100",
     assessment: "Pending",
   },
 ]
@@ -65,9 +65,9 @@ const Top = () => {
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Job</TableHead>
-          <TableHead className="w-[200px]">Name</TableHead>
-          <TableHead className="w-[100px]">Rate</TableHead>
+          <TableHead className="md:w-[300px] lg:w-[100px]">Job</TableHead>
+          <TableHead className="lg:w-[200px]">Name</TableHead>
+          <TableHead className="lg:w-[100px]">Score</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -79,12 +79,6 @@ const Top = () => {
           </TableRow>
         ))}
       </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell colSpan={2}>Total</TableCell>
-          <TableCell className="text-right">163</TableCell>
-        </TableRow>
-      </TableFooter>
     </Table>
   )
 }

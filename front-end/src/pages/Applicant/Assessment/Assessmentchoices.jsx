@@ -12,7 +12,7 @@ const Assessmentchoices = () => {
     
     sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-y-5 md:gap-y-5 lg:gap-y-3 xl:gap-y-4 gap-x-4'>
     {scores.map((scorez) => (
-          <AreaCard key={scores.id} scorez={scorez}/>
+          <AreaCard key={scorez.id} scorez={scorez}/>
         ))}
       </div>
     </div>
