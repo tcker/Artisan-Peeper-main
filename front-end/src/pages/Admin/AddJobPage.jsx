@@ -67,14 +67,14 @@ function AddJobPage({addJobSubmit}) {
                 <div className="mb-4">
                   <label
                     htmlFor="type"
-                    className="block text-gray-700 font-bold mb-2"
+                    className="block text-sm font-bold mb-2"
                   >
                     Job Type
                   </label>
                   <select
                     id="type"
                     name="type"
-                    className="border rounded w-full py-2 px-3"
+                    className="border rounded w-full py-2 px-3 dark:bg-slate-900 text-sm"
                     required
                     value={type}
                     onChange={(e) => setType(e.target.value)}
@@ -111,7 +111,7 @@ function AddJobPage({addJobSubmit}) {
                   <select
                     id="salary"
                     name="salary"
-                    className="border rounded w-full py-2 px-3"
+                    className="border rounded w-full py-2 px-3 dark:bg-slate-900 text-sm"
                     required
                     value={salary}
                     onChange={(e) => setSalary(e.target.value)}
