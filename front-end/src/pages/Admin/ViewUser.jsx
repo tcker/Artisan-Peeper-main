@@ -20,7 +20,7 @@ const ViewUser = () => {
       <div className='pl-4 grid grid-cols-3 gap-5 justify-items-center'>
         <div>
           <h2 className='text-slate-500 underline pb-5'><Link to="/dashboard"><FaArrowLeft className='inline mr-1'/>Go back to Dashboard</Link></h2>
-          <AboutCard image={DarkSmily} name='Emmanuel Fabella' job='Cybersecurity' email='emmanuelfabella606@gmail.com' contact='123456789'/>
+          <AboutCard image={DarkSmily} name='Emmanuel Fabella' job='Cybersecurity' email='emmanuelfabella606@gmail.com' contact='123456789' type="Full-time"/>
         </div>
         <div className='col-span-2'>
           <CVEval/>
