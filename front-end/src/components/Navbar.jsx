@@ -53,7 +53,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
       : `mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
 
   return (
-    <nav className="fixed z-50">
+    <nav className="fixed">
       <div
         className={`${
           openSidebar ? "w-72" : "w-20"
@@ -80,8 +80,11 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
             Artisan Peeper
           </h1>
         </div>
-
-        <NavLink to="/dashboard" className={linkClass}>
+        {/* Dashboard link */}
+        <NavLink
+          to={isAdmin ? "/adminDashboard" : "/dashboard"}
+          className={linkClass}
+        >
           <HiMagnifyingGlass className="text-gray-100" />
           <span
             className={`text-sm ${
@@ -91,8 +94,8 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
             Explore
           </span>
         </NavLink>
-
-        {isAssessmentOpen ? (
+        {/* Assessment Dashboard link */}
+        {isAssessmentOpen && (
           <NavLink to="/assessment-dashboard" className={linkClass}>
             <HiOutlineLightBulb />
             <span
@@ -103,11 +106,9 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
               Assessment
             </span>
           </NavLink>
-        ) : (
-          ""
         )}
-
-        {isAdmin ? (
+        {/* Add Job link (only visible to admin) */}
+        {isAdmin && (
           <NavLink to="/add-job" className={linkClass}>
             <HiOutlineBriefcase />
             <span
@@ -118,8 +119,10 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
               Add Job
             </span>
           </NavLink>
-        ) : (
-          <div className="`text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`">
+        )}
+        {/* Profile section */}
+        {!isAdmin && (
+          <div className="text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out">
             <HiOutlineUser className="text-gray-100" />
             <Sheet>
               <SheetTrigger asChild>
@@ -174,7 +177,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
             </Sheet>
           </div>
         )}
-
+        {/* Logout section */}
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <div className="mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out">
@@ -203,7 +206,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-
+        {/* Theme mode toggle */}
         <div className="mt-9">
           <ModeToggle />
         </div>
