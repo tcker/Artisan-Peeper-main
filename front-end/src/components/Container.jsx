@@ -2,7 +2,7 @@
 
 function Container({children}) {
   return (
-    <div className='pl-20 pt-10 pb-10'>
+    <div className='pl-20'>
       {children}
     </div>
   )

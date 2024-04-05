@@ -11,7 +11,7 @@ const Total = ({title, total, added}) => {
         <Separator className='my-2'/>
       <div className='flex items-center justify-center'>
         <p className='text-2xl font-extrabold pr-3 border-r-2'>{total}</p>
-        <p className='text-xl font-semibold pl-3'>Added:  {added}</p>
+        <p className='text-xl font-semibold pl-3'>{added} new</p>
       </div>
     </div>
   )
