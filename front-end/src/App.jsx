@@ -37,53 +37,21 @@ import { ThemeProvider } from "./components/theme-provider.jsx";
 function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(true);
-  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(true);
-
-  // Add New Job
-  const addJob = async (newJob) => {
-    const res = await fetch('/api/jobs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newJob),
-    });
-    return;
-  }
-
-  // Delete Job
-  const deleteJob = async (id) => {
-    const res = await fetch(`/api/jobs/${id}`, {
-      method: 'DELETE'
-    });
-    return;
-  }
-
-  // Update Job
-  const updateJob = async (job) => {
-    const res = await fetch(`/api/jobs/${job.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(job),
-    });
-    return;
-  }
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const router = createBrowserRouter (
     createRoutesFromElements (
       <>
         {/* Authentication */}
-        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/" element={<LoginPage/>}/>
         <Route path="/register" element={<SignUpPage/>}/>
 
         {/* Authentication Global Access */}
         {isAuthenticated ? (
           <>
             <Route path='/' element={<MainLayout isAssessmentOpen={isAssessmentOpen}/>}>
-              <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>} loader={jobLoader}/>
+              <Route path='/jobs/:id' element={<JobPage/>} loader={jobLoader}/>
             </Route>
           </>
         ) : (
@@ -111,8 +79,8 @@ function App() {
               <>
                 <Route path='/dashboard' element={<AdminDashboard/>}/>
                 <Route path='/view-user' element={<ViewUser/>}/>
-                <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
-                <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob}/>} loader={jobLoader}/>
+                <Route path='/add-job' element={<AddJobPage/>}/>
+                <Route path="/edit-job/:id" element={<EditJobPage/>} loader={jobLoader}/>
               </>
             </Route>
           </>

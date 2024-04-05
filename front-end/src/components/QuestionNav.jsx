@@ -26,33 +26,24 @@ const QuestionNav = () => {
     return () => clearInterval(intervalId);
   }, []); 
 
-  return (
-    <div className='h-72 sm:w-full lg:w-72 2xl:h-96 2xl:w-96 p-5  bg-slate-100 dark:bg-indigo-950 rounded-2xl'>
-      <h1 className='text-3xl pb-1 border-b-[1px] border-black'>{formatTime(time)} s</h1>
-      <div className='grid grid-cols-6 gap-4 mt-3 mx-1 *:text-center'>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>1</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>2</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>3</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>4</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>5</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>6</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>7</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>8</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>9</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>10</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>1</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>2</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>3</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>4</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>5</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>6</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>7</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>8</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>9</span>
-        <span className='p-1 border-[1px] border-gray bg-slate-200 hover:bg-slate-500 dark:bg-slate-950 rounded-full'>10</span>
+  const badgeStyling = 'w-12 h-12 flex justify-center items-center border-[1px] border-gray bg-slate-200 hover:bg-slate-300 dark:bg-slate-950 rounded-full';
 
+  return (
+    <div className='p-5 rounded-xl flex justify-center items-center flex-col bg-slate-100 dark:bg-slate-950 border-gray border-2'>
+      <h1 className='text-3xl pb-1 border-b-[1px]'>{formatTime(time)} s</h1>
+      <div className='grid grid-cols-5 gap-4 mt-3 mx-1 *:text-center'>
+        <span className={badgeStyling}>1</span>
+        <span className={badgeStyling}>2</span>
+        <span className={badgeStyling}>3</span>
+        <span className={badgeStyling}>4</span>
+        <span className={badgeStyling}>5</span>
+        <span className={badgeStyling}>6</span>
+        <span className={badgeStyling}>7</span>
+        <span className={badgeStyling}>8</span>
+        <span className={badgeStyling}>9</span>
+        <span className={badgeStyling}>10</span>
       </div>
-      <div className='flex h-[5%] items-end justify-end 2xl:h-[30%]'>
+      <div className='my-4 grid items-end'>
         <Button><Link to="/assessment-areas">Submit</Link></Button>
       </div>
     </div>

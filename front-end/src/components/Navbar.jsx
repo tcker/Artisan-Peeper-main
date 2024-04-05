@@ -53,7 +53,7 @@ function Navbar({ isAssessmentOpen, isAdmin }) {
       : `mt-2 text-gray-100 flex text-2xl items-center gap-x-4 cursor-pointer p-2 hover:bg-indigo-700 rounded-md transition duration-200 ease-in-out`;
 
   return (
-    <nav className="fixed">
+    <nav className="fixed z-50">
       <div
         className={`${
           openSidebar ? "w-72" : "w-20"
