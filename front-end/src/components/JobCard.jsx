@@ -23,6 +23,7 @@ import FileUpload from "@/components/FileUpload";
 import { FaMapMarker } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {Link} from 'react-router-dom'
+import { FaArrowLeft } from "react-icons/fa";
 
 
 function JobCard({ job }) {
@@ -60,6 +61,7 @@ function JobCard({ job }) {
         </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
+              <AlertDialogCancel className="w-20 border-0 text-left underline"><FaArrowLeft/><p className="pl-2">Exit</p></AlertDialogCancel>
               <AlertDialogTitle>Upload CV/Resume File:</AlertDialogTitle>
               <AlertDialogDescription>
                 To apply for {job.title}, please upload your Curriculum Vitae (CV) or resume that contains the expertise and experience correlated to the chosen career. 
@@ -71,8 +73,7 @@ function JobCard({ job }) {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-             <AlertDialogAction>Submit</AlertDialogAction>
+                <AlertDialogCancel></AlertDialogCancel>
             </AlertDialogFooter>
           </AlertDialogContent>
       </AlertDialog>
