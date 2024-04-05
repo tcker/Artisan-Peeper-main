@@ -4,7 +4,7 @@ import Login from "../src/components/Login.jsx"; // Make sure this path is corre
 import SignUpPage from "@/pages/SignUpPage.jsx";
 import NotFoundPage from "@/pages/NotFoundPage.jsx";
 import MainLayout from "@/layout/MainLayout.jsx";
-import JobPage, { jobLoader } from "./pages/JobPage.jsx";
+import JobPage from "./pages/JobPage.jsx"; // Import JobPage without jobLoader
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
 import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
@@ -31,22 +31,23 @@ const firebaseConfig = {
 const adminUid = "H8cUeg6QAxVV5xTpJMHePhdZIfI2"; // Admin UID
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false); 
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // Check if the user's UID matches the admin UID
         const isAdminUser = user.uid === adminUid;
         setIsAdmin(isAdminUser);
         setIsAuthenticated(true);
       } else {
         setIsAdmin(false);
-        setIsAuthenticated(true);
+        setIsAuthenticated(false);
       }
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -81,33 +82,34 @@ function App() {
     return;
   }
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUpPage />} />
-
-          {isAuthenticated && (
-            <Route path="/" element={<MainLayout isAdmin={isAdmin} isAssessmentOpen={isAssessmentOpen} />}>
-              <Route path="/jobs/:id" element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />
-              <Route path="/dashboard" element={<ApplicantDashboardPage />} />
-              <Route path="/profile" element={<ApplicantProfilePage />} />
-              <Route path="/assessment-dashboard" element={<AssessmentDashboard />} />
-              <Route path="/assessment-areas" element={<Assessmentchoices />} />
-              <Route path="/assessment-start" element={<Assessment />} />
-              <Route path="/assessment-start/:id" element={<Assessment />} />
-              {isAdmin && (
-                <>
-                  <Route path="/adminDashboard" element={<AdminDashboard />} />
-                  <Route path="/view-user" element={<ViewUser />} />
-                  <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
-                  <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} loader={jobLoader} />
-                </>
-              )}
-            </Route>
-          )}
-
+          <Route path="/" element={<MainLayout isAdmin={isAdmin} isAssessmentOpen={isAssessmentOpen} />}>
+            <Route path="/jobs/:id" element={<JobPage deleteJob={deleteJob} />} />
+            <Route path="/dashboard" element={<ApplicantDashboardPage />} />
+            <Route path="/profile" element={<ApplicantProfilePage />} />
+            <Route path="/assessment-dashboard" element={<AssessmentDashboard />} />
+            <Route path="/assessment-areas" element={<Assessmentchoices />} />
+            <Route path="/assessment-start" element={<Assessment />} />
+            <Route path="/assessment-start/:id" element={<Assessment />} />
+            {isAdmin && (
+              <>
+                <Route path='/adminDashboard' element={<AdminDashboard />} />
+                <Route path='/view-user' element={<ViewUser />} />
+                <Route path='/add-job' element={<AddJobPage />} />
+                <Route path="/edit-job/:id" element={<EditJobPage />} />
+              </>
+            )}
+          </Route>
+          {!isAuthenticated && <Navigate to="/login" />}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
