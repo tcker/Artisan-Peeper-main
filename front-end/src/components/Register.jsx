@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../backend/config/firebase"; // Assuming you have a file named firebase.js exporting your Firestore instance
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -15,6 +17,7 @@ const firebaseConfig = {
   appId: "1:122178031252:web:a50cc6498077d213cbae81",
   measurementId: "G-CS97LJ6LLY"
 };
+
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
@@ -36,7 +39,17 @@ function Register() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      // Create the user in Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+      // Add user details to Firestore
+      await addDoc(collection(db, "users"), {
+        uid: userCredential.user.uid,
+        firstName,
+        lastName,
+        email
+      });
+
       // Set registration success to true
       setRegistrationSuccess(true);
     } catch (error) {
