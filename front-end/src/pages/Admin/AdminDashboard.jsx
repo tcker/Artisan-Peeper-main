@@ -9,7 +9,7 @@ function AdminDashboard() {
     <Container>
       <div className="flex justify-center items-center flex-col py-2">
         <div className="flex justify-between mx-4 flex-wrap ">
-          <h1 className="font-bold text-2xl upp">Welcome back, Admin.</h1>
+          <h1 className="font-bold text-2xl mt-5">Welcome back, Admin.</h1>
         </div>
         <div className="flex flex-wrap gap-6 px-2 my-3">
           <Total title="Total Applicants" total="163" added="+" />
@@ -25,7 +25,7 @@ function AdminDashboard() {
             <TablePassing />
           </div>
           <div className="p-5 border-2 rounded-lg shadow-md">
-            <p className="text-xl font-bold mb-3">P`assed Assessments</p>
+            <p className="text-xl font-bold mb-3">Passed Assessments</p>
             <Top />
           </div>
         </div>
