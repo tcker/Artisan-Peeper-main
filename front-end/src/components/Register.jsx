@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,7 +18,6 @@ const firebaseConfig = {
   measurementId: "G-CS97LJ6LLY"
 };
 
-
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
@@ -29,6 +28,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [jobPosition, setJobPosition] = useState(""); // Add job position state
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleRegister = async (e) => {
@@ -40,14 +40,19 @@ function Register() {
 
     try {
       // Create the user in Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
       // Add user details to Firestore
       await addDoc(collection(db, "users"), {
         uid: userCredential.user.uid,
         firstName,
         lastName,
-        email
+        email,
+        jobPosition, // Save job position
       });
 
       // Set registration success to true
@@ -97,6 +102,16 @@ function Register() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="job-position">Job Position</Label>
+              <Input
+                id="job-position"
+                placeholder="Software Engineer, Designer, etc."
+                required
+                value={jobPosition}
+                onChange={(e) => setJobPosition(e.target.value)}
               />
             </div>
             <div className="grid gap-2">
