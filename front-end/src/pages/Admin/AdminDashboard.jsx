@@ -1,10 +1,31 @@
-import JobListing from "@/components/JobListing.jsx";
+
+import React, { useState, useEffect } from "react";
 import Container from "@/components/Container.jsx";
 import Total from "@/components/Total";
 import TablePassing from "@/components/TablePassing.jsx";
 import Top from "@/components/Top.jsx";
+import JobListing from "@/components/JobListing.jsx";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../../backend/config/firebase"; // Assuming you have a file named firebase.js exporting your Firestore instance
+
 
 function AdminDashboard() {
+  const [totalApplicants, setTotalApplicants] = useState(0);
+
+
+  useEffect(() => {
+    async function fetchTotalUsers() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        setTotalApplicants(querySnapshot.size);
+      } catch (error) {
+        console.error("Error fetching total users:", error);
+      }
+    }
+    fetchTotalUsers();
+  }, []);
+
+
   return (
     <Container>
       <div className="flex justify-center items-center flex-col py-2">
@@ -12,7 +33,7 @@ function AdminDashboard() {
           <h1 className="font-bold text-2xl mt-5">Welcome back, Admin.</h1>
         </div>
         <div className="flex flex-wrap gap-6 px-2 my-3">
-          <Total title="Total Applicants" total="163" added="+" />
+          <Total title="Total Applicants" total={totalApplicants} added="+" />
           <Total title="CV Passing Applicants" total="106" added="+" />
           <Total title="Passed Assessment" total="56" added="+" />
           <Total title="Total Passing" total="23" added="+" />
@@ -40,4 +61,7 @@ function AdminDashboard() {
   );
 }
 
+
 export default AdminDashboard;
+
+
