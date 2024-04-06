@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Login from "../src/components/Login.jsx"; // Make sure this path is correct
+import Login from "../src/components/Login.jsx";
 import SignUpPage from "@/pages/SignUpPage.jsx";
 import NotFoundPage from "@/pages/NotFoundPage.jsx";
 import MainLayout from "@/layout/MainLayout.jsx";
-import JobPage from "./pages/JobPage.jsx"; // Import JobPage without jobLoader
+import JobPage from "./pages/JobPage.jsx";
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
 import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
@@ -89,6 +89,7 @@ function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        {!isAuthenticated && <Navigate to="/login" />}
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<SignUpPage />} />
@@ -109,7 +110,6 @@ function App() {
               </>
             )}
           </Route>
-          {!isAuthenticated && <Navigate to="/login" />}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
