@@ -1,5 +1,5 @@
 import Container from "@/components/Container.jsx";
-import { useParams, useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -7,9 +7,7 @@ import { toast } from "react-toastify";
 import { Button } from "@/components/ui/button";
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -26,16 +24,29 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-function JobPage({deleteJob}) {
+function JobPage({ deleteJob }) {
   const { id } = useParams();
-  const job = useLoaderData();
   const navigate = useNavigate();
 
-  function onDeleteClick(id) {
-    deleteJob(id);
-    toast.success('Job Deleted Successfully!')
-    navigate('/dashboard')
+  // Simulated job data, replace with actual data fetching logic
+  const job = {
+    type: "Full-time",
+    title: "Software Engineer",
+    location: "New York, NY",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+    salary: "$100,000 - $120,000",
+    company: {
+      name: "Example Company",
+      description: "A leading technology company...",
+      contactEmail: "info@example.com",
+      contactPhone: "(123) 456-7890",
+    },
+  };
 
+  function onDeleteClick() {
+    deleteJob(id);
+    toast.success("Job Deleted Successfully!");
+    navigate("/dashboard");
   }
 
   return (
@@ -94,7 +105,7 @@ function JobPage({deleteJob}) {
               <CardHeader>
                 <CardTitle>Manage Job</CardTitle>
                 <div className="grid sm:grid-cols-1 md:grid-cols-8 gap-2 pt-4">
-                  <Link to={`/edit-job/${job.id}`} className="w-23">
+                  <Link to={`/edit-job/${id}`} className="w-23">
                     <Button className="w-[100%]">Edit Job</Button>
                   </Link>
                   <AlertDialog>
@@ -115,7 +126,9 @@ function JobPage({deleteJob}) {
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction onClick={() => onDeleteClick(job.id)}>Continue</AlertDialogAction>
+                        <AlertDialogAction onClick={onDeleteClick}>
+                          Continue
+                        </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
                   </AlertDialog>
@@ -129,10 +142,4 @@ function JobPage({deleteJob}) {
   );
 }
 
-const jobLoader = async ({ params }) => {
-  const res = await fetch(`/api/jobs/${params.id}`);
-  const data = await res.json();
-  return data;
-};
-
-export { JobPage as default, jobLoader };
+export default JobPage;
