@@ -15,6 +15,11 @@ const uploadFile = async (files, setProgress) => {
   const uploadedFilesData = await Promise.all(
     files.map(async (file) => {
       try {
+        // Validate file type (accept only PDF)
+        if (file.type !== 'application/pdf') {
+          throw new Error('Only PDF files are allowed.');
+        }
+
         // Check if the file already exists
         const fileRef = ref(storage, `resumes/${userUUID}/${file.name}`);
         try {
@@ -67,3 +72,4 @@ const uploadFile = async (files, setProgress) => {
 };
 
 export default uploadFile;
+  
