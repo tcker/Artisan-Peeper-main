@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useParams } from 'react-router-dom';
 import QuestionNav from "@/components/QuestionNav";
 import Camera from "@/components/Camera.jsx";
 import Question from "@/components/Question.jsx";
 import { Button } from "@/components/ui/button";
 import { Toaster, toast } from "react-hot-toast";
 import Container from "@/components/Container.jsx";
+import { getDocs, collection } from 'firebase/firestore'
+import { db } from '../../../config/firebase'; // Import the Firebase config
 
 const Assessment = () => {
-  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(true);
+  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(false);
   const [terminated, setTerminated] = useState(false);
   const tabSwitchCountRef = useRef(0);
 
@@ -68,6 +71,49 @@ const Assessment = () => {
     setTabSwitchingEnabled((prevEnabled) => !prevEnabled);
   };
 
+  const { id } = useParams();
+  const [subcollectionData, setSubcollectionData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (id == 'Adaptability') {
+        const docRef = await getDocs(collection(db, "Assessment", "Adaptability", "Questions"));
+        const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setSubcollectionData(subDocRef)
+        } else if (id == 'Communication') {
+          const docRef = await getDocs(collection(db, "Assessment", "Communication", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } else if (id == 'Interpersonal') {
+          const docRef = await getDocs(collection(db, "Assessment", "Interpersonal", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } else if (id == 'Leadership') {
+          const docRef = await getDocs(collection(db, "Assessment", "Leadership", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } else if (id == 'Problem Solving') {
+          const docRef = await getDocs(collection(db, "Assessment", "Problem Solving", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } else if (id == 'Teamwork') {
+          const docRef = await getDocs(collection(db, "Assessment", "Teamwork", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } else if (id == 'Work Ethic') {
+          const docRef = await getDocs(collection(db, "Assessment", "Work Ethic", "Questions"));
+          const subDocRef = docRef.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+          setSubcollectionData(subDocRef)
+        } 
+      } catch (error) {
+        console.error('Error fetching document:', error);
+      }
+    };
+
+    fetchData();
+  }, [id]); // Fetch data when document ID changes
+  
   return (
     <>
       <Toaster />
@@ -75,33 +121,28 @@ const Assessment = () => {
         <div>You have been terminated from the quiz.</div>
       ) : (
         <Container>
-          <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen pt-3">
+          <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen pt-3 ">
             <div className="mx-auto w-[400px]">
               <div className="grid gap-4 justify-center items-center">
                 <Camera />
-                <QuestionNav />
+              {/* {subcollectionData.map((document, index) => ( */}
+                <QuestionNav no={document.Q} />
+                {/* ))} */}
               </div>
             </div>
             <div className="flex flex-col gap-10 pt-5 overflow-hidden">
-              <span className="pb-2 text-2xl text-wrap border-b-[1px] w-full">
-                Teamwork
+              <span className="pb-2 text-2xl text-wrap border-b-2 border-indigo-600 w-full">
+                {id}
               </span>
               <div className="h-[calc(70vh+100px)] overflow-scroll grid gap-4">
-                <Question />
-                <Question />
-                <Question />
-                <Question />
-                <Question />
-                <Question />
-                <Question />
-                <Question />
+              {subcollectionData.map((document, index) => (
+                <Question 
+                key={index} question={document.Q} answerA={document.QA} answerB={document.QB} answerC={document.QC} answerD={document.QD} no={document.Query}/>
+              ))}
                 <Button
                   className="mt-10 mb-10 w-[100%]"
                   onClick={toggleTabSwitching}
                 >
-                  {tabSwitchingEnabled
-                    ? "Disable Tab Switching"
-                    : "Enable Tab Switching"}
                 </Button>
               </div>
             </div>

@@ -1,0 +1,26 @@
+    const fetchSubcollectionData = async () => {
+      try {
+
+        const parentDocRef = firebase.firestore().collection('Assessment').doc(id);
+        
+        // Reference to the subcollection within the parent document
+        const subcollectionRef = parentDocRef.collection('Questions');
+        
+        // Fetch documents from the subcollection
+        const subcollectionSnapshot = await subcollectionRef.get();
+        
+        // Extract and format subcollection data
+        const data = subcollectionSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        
+        // Set the subcollection data into state
+        setSubcollectionData(data);
+      } catch (error) {
+        console.error('Error fetching subcollection data:', error);
+      }
+    };
+
+    fetchSubcollectionData();
+  }, []);
