@@ -1,5 +1,9 @@
+
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getStorage } from "firebase/storage"; // Import getStorage to access the storage object
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -14,5 +18,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app); // Initialize storage
 
-export { db };
+export { db, auth, app as firebaseApp, storage }; // Export storage along with other Firebase modules

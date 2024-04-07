@@ -150,7 +150,9 @@ function Register() {
         )}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <span className="underline cursor-pointer">Sign in</span>
+          <Link to="/login" className="underline cursor-pointer">
+            Sign in
+          </Link> 
         </div>
       </div>
     </div>
