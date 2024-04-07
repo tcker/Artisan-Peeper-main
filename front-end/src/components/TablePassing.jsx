@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -9,98 +9,77 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {Link} from 'react-router-dom'
+import { db } from '../../../backend/config/firebase'; // Assuming db is your Firestore instance
+import { getDocs, collection } from 'firebase/firestore';
 
-const invoices = [
-  {
-    invoice: "INV001",
-    CV: "Success",
-    assessment: "Failed",
-    name: "Fabella, Emmanuel T.",
-    totalAmount: "55%",
-  },
-  {
-    invoice: "INV002",
-    CV: "Pending",
-    assessment: "Failed",
-    name: "Raizen Vahn Cedrick Sanchez",
-    totalAmount: "25%",
-  },
-  {
-    invoice: "INV003",
-    CV: "Failed",
-    name: "Marcus Zach Lestat Guttierez Rancio",
-    assessment: "Success",
-    totalAmount: "65%",
-  },
-  {
-    invoice: "INV004",
-    CV: "Success",
-    assessment: "Failed",
-    name: "Fabella, Emmanuel T.",
-    totalAmount: "55%",
-  },
-  {
-    invoice: "INV005",
-    CV: "Pending",
-    assessment: "Failed",
-    name: "Raizen Vahn Cedrick Sanchez",
-    totalAmount: "25%",
-  },
-  {
-    invoice: "INV006",
-    CV: "Failed",
-    name: "Marcus Zach Lestat Guttierez Rancio",
-    assessment: "Success",
-    totalAmount: "65%",
-  },
-  {
-    invoice: "INV007",
-    CV: "Success",
-    assessment: "Failed",
-    name: "Fabella, Emmanuel T.",
-    totalAmount: "55%",
-  },
-  {
-    invoice: "INV008",
-    CV: "Pending",
-    assessment: "Failed",
-    name: "Raizen Vahn Cedrick Sanchez",
-    totalAmount: "25%",
-  },
-  {
-    invoice: "INV009",
-    CV: "Failed",
-    name: "Marcus Zach Lestat Guttierez Rancio",
-    assessment: "Success",
-    totalAmount: "65%",
-  },
-]
- 
+
 const TablePassing = () => {
+  const [users, setUsers] = useState([]);
+
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const userData = usersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setUsers(userData);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+
+    fetchUsers();
+  }, []);
+
+
+  const handleViewResume = async (resumePath) => {
+    try {
+      // Fetch the resume file
+      const response = await fetch(resumePath);
+      if (!response.ok) {
+        throw new Error('Failed to fetch resume');
+      }
+      // Convert response to blob
+      const resumeBlob = await response.blob();
+      // Create a URL for the blob
+      const resumeUrl = URL.createObjectURL(resumeBlob);
+      // Open the URL in a new tab
+      window.open(resumeUrl, '_blank');
+    } catch (error) {
+      console.error('Error fetching or viewing resume:', error);
+    }
+  };
+
+
   return (
-    <Table className="w-full md:w-full lg:w-[850px] ">
-      <TableCaption>A list of your recent invoices.</TableCaption>
+    <Table className="w-full md:w-full lg:w-[850px]">
+      <TableCaption>A list of registered users.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Job</TableHead>
-          <TableHead className="w-[100px]">CV</TableHead>
-          <TableHead className="w-[200px]">Name</TableHead>
-          <TableHead className="w-[70px]">CV Rating</TableHead>
+          <TableHead className="w-[200px]">Email</TableHead>
+          <TableHead className="w-[100px]">First Name</TableHead>
+          <TableHead className="w-[100px]">Last Name</TableHead>
+          <TableHead className="w-[200px]">Job Position</TableHead>
+          <TableHead className="w-[100px]">View Resume</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {invoices.map((invoice) => (
-          <TableRow key={invoice.invoice}>
-            <TableCell className="font-medium">{invoice.invoice}</TableCell>
-            <TableCell>{invoice.CV}</TableCell>
-            <TableCell><Link to="/view-user">{invoice.name}</Link></TableCell>
-            <TableCell className="[200px]">{invoice.totalAmount}</TableCell>
+        {users.map((user, index) => (
+          <TableRow key={index}>
+            <TableCell>{user.email}</TableCell>
+            <TableCell>{user.firstName}</TableCell>
+            <TableCell>{user.lastName}</TableCell>
+            <TableCell>{user.jobPosition}</TableCell>
+            <TableCell>
+              <button onClick={() => handleViewResume(user.resumePath)}>View Resume</button>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
-export default TablePassing
+
+export default TablePassing;
