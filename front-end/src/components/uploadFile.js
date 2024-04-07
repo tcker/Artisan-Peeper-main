@@ -1,7 +1,7 @@
-import { uploadBytesResumable, ref } from 'firebase/storage';
+import { uploadBytesResumable, getDownloadURL, ref } from 'firebase/storage';
 import { storage } from "../../../backend/config/firebase";
 
-const uploadFile = async (files) => {
+const uploadFile = async (files, setProgress) => {
   const uploadedFilesData = await Promise.all(
     files.map(async (file) => {
       try {
@@ -12,7 +12,7 @@ const uploadFile = async (files) => {
         uploadTask.on('state_changed',
           (snapshot) => {
             const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-            console.log(`Upload is ${progress}% done`);
+            setProgress(progress); // Update the progress state
           },
           (error) => {
             console.error('Error uploading file:', error);
@@ -22,7 +22,8 @@ const uploadFile = async (files) => {
 
         await uploadTask;
 
-        const downloadURL = await ref(storageRef).getDownloadURL();
+        // Get the download URL directly from uploadTask.snapshot.ref
+        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
         return { fileName: file.name, url: downloadURL };
       } catch (error) {
         console.error('Error uploading file:', error);

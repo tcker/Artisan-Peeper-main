@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button.jsx";
-import { db, auth, firebaseApp, storage } from "../../../backend/config/firebase"; // Import storage from firebase
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { collection, doc, addDoc } from "firebase/firestore";
+import { db, auth, storage } from "../../../backend/config/firebase";
 import uploadFile from "./uploadFile"; // Import the uploadFile function
 
 const FileUpload = () => {
@@ -11,7 +13,12 @@ const FileUpload = () => {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: async (acceptedFiles) => {
       try {
-        const uploadedFilesData = await uploadFile(acceptedFiles);
+        const currentUser = auth.currentUser;
+        if (!currentUser) {
+          throw new Error("User not authenticated");
+        }
+
+        const uploadedFilesData = await uploadFile(acceptedFiles, setProgress);
         setUploadedFiles(uploadedFilesData);
       } catch (error) {
         console.error("Error uploading files:", error);
