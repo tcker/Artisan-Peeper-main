@@ -140,8 +140,6 @@ const Assessment = () => {
                 key={index} question={document.Q} answerA={document.QA} answerB={document.QB} answerC={document.QC} answerD={document.QD} no={document.Query}/>
               ))}
                 <Button
-                  className="mt-10 mb-10 w-[100%]"
-                  onClick={toggleTabSwitching}
                 >
                 </Button>
               </div>
