@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Q from '@/assets/Q.png'
 import { db } from '../config/firebase'
 
-const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
+const Question = ({no, question, answerA, answerB, answerC, answerD}) => {
   const [selectedOption, setSelectedOption] = useState('');
   const backgroundchange = {
     backgroundImage: `url(${Q})`
