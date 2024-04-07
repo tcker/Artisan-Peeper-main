@@ -2,35 +2,30 @@ import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 
-const QuestionNav = () => {
-  const [time, setTime] = useState(30 * 60);
+const QuestionNav = ({no}) => {
 
-  // Function to format time
-  const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-  };
+  const [time, setTime] = useState(600); // 10 minutes in seconds
 
-  // Function to update timer
-  const updateTimer = () => {
-    const intervalId = setInterval(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
       setTime(prevTime => prevTime - 1);
     }, 1000);
 
-    return () => clearInterval(intervalId); 
-  };
+    return () => clearInterval(interval);
+  }, []);
 
-  useEffect(() => { 
-    const intervalId = updateTimer(); 
-    return () => clearInterval(intervalId);
-  }, []); 
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   const badgeStyling = 'w-12 h-12 flex justify-center items-center border-[1px] border-gray bg-slate-200 hover:bg-slate-300 dark:bg-slate-950 rounded-full';
 
   return (
     <div className='p-5 rounded-xl flex justify-center items-center flex-col bg-slate-100 dark:bg-slate-950 border-gray border-2'>
       <h1 className='text-3xl pb-1 border-b-[1px]'>{formatTime(time)} s</h1>
+      {time === 0 ? (<Link to="/assessment-areas"></Link>) : ('')}
       <div className='grid grid-cols-5 gap-4 mt-3 mx-1 *:text-center'>
         <span className={badgeStyling}>1</span>
         <span className={badgeStyling}>2</span>

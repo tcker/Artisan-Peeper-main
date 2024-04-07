@@ -121,30 +121,28 @@ const Assessment = () => {
         <div>You have been terminated from the quiz.</div>
       ) : (
         <Container>
-          <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen pt-3">
+          <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen pt-3 ">
             <div className="mx-auto w-[400px]">
               <div className="grid gap-4 justify-center items-center">
                 <Camera />
-                <QuestionNav />
+              {/* {subcollectionData.map((document, index) => ( */}
+                <QuestionNav no={document.Q} />
+                {/* ))} */}
               </div>
             </div>
             <div className="flex flex-col gap-10 pt-5 overflow-hidden">
-              <span className="pb-2 text-2xl text-wrap border-b-[1px] w-full">
+              <span className="pb-2 text-2xl text-wrap border-b-2 border-indigo-600 w-full">
                 {id}
               </span>
-              <div className="h-[calc(70vh+100px)]  overflow-scroll grid gap-4">
+              <div className="h-[calc(70vh+100px)] overflow-scroll grid gap-4">
               {subcollectionData.map((document, index) => (
                 <Question 
                 key={index} question={document.Q} answerA={document.QA} answerB={document.QB} answerC={document.QC} answerD={document.QD} no={document.Query}/>
               ))}
-
                 <Button
                   className="mt-10 mb-10 w-[100%]"
                   onClick={toggleTabSwitching}
                 >
-                  {tabSwitchingEnabled
-                    ? "Disable Tab Switching"
-                    : "Enable Tab Switching"}
                 </Button>
               </div>
             </div>
