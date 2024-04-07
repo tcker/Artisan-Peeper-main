@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../../backend/config/firebase"; // Assuming you have a file named firebase.js exporting your Firestore instance
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -26,6 +28,7 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [jobPosition, setJobPosition] = useState(""); // Add job position state
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleRegister = async (e) => {
@@ -36,7 +39,22 @@ function Register() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      // Create the user in Firebase Authentication
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      // Add user details to Firestore
+      await addDoc(collection(db, "users"), {
+        uid: userCredential.user.uid,
+        firstName,
+        lastName,
+        email,
+        jobPosition, // Save job position
+      });
+
       // Set registration success to true
       setRegistrationSuccess(true);
     } catch (error) {
@@ -87,6 +105,16 @@ function Register() {
               />
             </div>
             <div className="grid gap-2">
+              <Label htmlFor="job-position">Job Position</Label>
+              <Input
+                id="job-position"
+                placeholder="Software Engineer, Designer, etc."
+                required
+                value={jobPosition}
+                onChange={(e) => setJobPosition(e.target.value)}
+              />
+            </div>
+            <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -122,7 +150,9 @@ function Register() {
         )}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <span className="underline cursor-pointer">Sign in</span>
+          <Link to="/login" className="underline cursor-pointer">
+            Sign in
+          </Link> 
         </div>
       </div>
     </div>
