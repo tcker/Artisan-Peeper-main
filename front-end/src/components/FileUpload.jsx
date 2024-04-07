@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button.jsx";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { collection, doc, addDoc } from "firebase/firestore";
+import { ref, getDownloadURL, uploadBytesResumable, getMetadata, StorageError } from "firebase/storage";
 import { db, auth, storage } from "../../../backend/config/firebase";
 import uploadFile from "./uploadFile"; // Import the uploadFile function
 
@@ -39,6 +38,7 @@ const FileUpload = () => {
                 key={file.fileName}
               >
                 {file.fileName}
+                {file.exists && <span className="ml-2 text-red-500">(File already exists)</span>}
               </li>
             ))}
           </ul>
@@ -58,3 +58,4 @@ const FileUpload = () => {
 };
 
 export default FileUpload;
+
