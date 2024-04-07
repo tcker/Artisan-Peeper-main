@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Q from '@/assets/Q.png'
+import { db } from '../config/firebase'
 
 const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -16,12 +17,13 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
 
   return (
     <div className='flex flex-col gap-3'>
-    <span className='py-2 px-3 bg-indigo-500 w-max rounded-md text-slate-300 font-bold'>QUESTION #{no}: </span>
+    <span className='py-2 px-3 bg-indigo-500 w-max rounded-md text-slate-300 font-bold'>{no}</span>
     <div className='flex p-3 max-w-auto justify-center rounded-lg  bg-slate-100 dark:bg-slate-950 border-gray border-2'>
     <div className='px-2 py-1 w-full'>
-      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg bg-center bg-cover' style={backgroundchange}>` {question}</h1>
+      <h1 className='max-h-auto text-white bg-indigo-600 text-wrap p-4 mb-2 rounded-lg bg-center bg-cover' style={backgroundchange}>{question}</h1>
 
       <forms className="grid sm:grid-cols-1 lg:grid-cols-2 gap-x-3 gap-y-2 *:rounded-md">
+        
 
           <button className='flex justify-between px-3 py-1 border-[1px] border-slate-500 text-wrap bg-white hover:scale-105 hover:bg-indigo-500 duration-100 dark:bg-indigo-900 items-center'
             value="option1"
@@ -29,7 +31,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
             onChange={selectedOption === 'option1'}
             name="AnswerA"
             > 
-            <label className="mr-1" htmlFor='a1' name="AnswerA">A. {answerA}</label>
+            <label className="mr-1 text-left" htmlFor='a1' name="AnswerA">{answerA}</label>
             <input 
               type='radio' 
               id='a1' 
@@ -45,7 +47,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
             onChange={selectedOption === 'option2'}
             name="AnswerB"
             > 
-            <label className="mr-1" htmlFor='b1' name="AnswerB">B. {answerB}</label>
+            <label className="mr-1 text-left" htmlFor='b1' name="AnswerB">{answerB}</label>
             <input 
               type='radio' 
               id='b1'
@@ -62,7 +64,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
             onChange={selectedOption === 'option3'}
             name="AnswerC"
             > 
-            <label className="mr-1" htmlFor='c1' name="AnswerC">C. {answerC}</label>
+            <label className="mr-1 text-left" htmlFor='c1' name="AnswerC">{answerC}</label>
             <input 
               type='radio' 
               id='c1'
@@ -79,7 +81,7 @@ const Question = ({no, question, answerA, answerB, answerC, answerD, }) => {
             onChange={selectedOption === 'option4'}
             name="AnswerD"
             > 
-            <label className="mr-1" htmlFor='d1' name="AnswerD">D. {answerD}</label>
+            <label className="mr-1 text-left" htmlFor='d1' name="AnswerD">{answerD}</label>
             <input 
               type='radio' 
               id='d1'
