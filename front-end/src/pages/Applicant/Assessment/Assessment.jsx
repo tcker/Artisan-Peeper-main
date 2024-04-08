@@ -9,8 +9,19 @@ import Container from "@/components/Container.jsx";
 import { getDocs, collection } from 'firebase/firestore'
 import { db } from '../../../config/firebase'; // Import the Firebase config
 
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Link } from "react-router-dom";
+
 const Assessment = () => {
-  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(false);
+  const [tabSwitchingEnabled, setTabSwitchingEnabled] = useState(true);
   const [terminated, setTerminated] = useState(false);
   const tabSwitchCountRef = useRef(0);
 
@@ -118,7 +129,29 @@ const Assessment = () => {
     <>
       <Toaster />
       {terminated ? (
-        <div>You have been terminated from the quiz.</div>
+       <Container>
+       <div className="flex justify-center items-center text-center min-h-screen text-4xl px-2">
+         <Card className="p-2">
+           <CardHeader>
+             <CardTitle className="text-3xl">
+               After consecutive attempts of accessing resource via third
+               party.
+               <br />
+               We regret to inform you that you have been terminated to take
+               the assessment.
+             </CardTitle>
+             <CardDescription className="text-sm">
+               We understand this may be concerning, and we encourage you to
+               reach out to your employer directly for any further inquiries
+               or assistance regarding the assessment process. <br /> Your
+               employer will be able to provide guidance and support to
+               ensure any issues are addressed promptly. Thank you for your
+               understanding and cooperation."
+             </CardDescription>
+           </CardHeader>
+         </Card>
+       </div>
+     </Container>
       ) : (
         <Container>
           <div className="grid gap-x-5 md:grid-cols-2 justify-center items-center min-h-screen pt-3 ">
