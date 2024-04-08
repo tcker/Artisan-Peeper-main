@@ -64,7 +64,7 @@ function JobCard({ job }) {
               <AlertDialogCancel className="w-20 border-0 text-left underline"><FaArrowLeft/><p className="pl-2">Exit</p></AlertDialogCancel>
               <AlertDialogTitle>Upload CV/Resume File:</AlertDialogTitle>
               <AlertDialogDescription>
-                To apply for {job.title}, please upload your Curriculum Vitae (CV) or resume that contains the expertise and experience correlated to the chosen career. 
+                To apply for {job.title}, please upload your Curriculum Vitae (CV) or resume that contains the expertise and experience correlated to the chosen career. Please use this format JOHNDOE_JOB.pdf
                 <div className="h-5"></div>
                 <div className="flex justify-center items-center h-56 w-full border-2 border-slate-400 rounded-md relative">
                     <FileUpload/>

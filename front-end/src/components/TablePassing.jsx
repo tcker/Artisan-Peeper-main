@@ -12,6 +12,8 @@ import {
 import { db, storage } from '../../../backend/config/firebase'; // Import storage and database from your Firebase configuration file
 import { getDocs, collection } from 'firebase/firestore';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import { toast } from 'react-toastify'; // Import toast from react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // Import react-toastify CSS
 
 const TablePassing = () => {
   const [users, setUsers] = useState([]);
@@ -42,7 +44,8 @@ const TablePassing = () => {
       // Check if the user's folder is empty
       if (userFolderSnapshot.items.length === 0) {
         console.log('User folder is empty.');
-        // Optionally, display a message to the user
+        // Display toast alert if no resume is uploaded
+        toast.error('No resume uploaded yet!');
         return;
       }
   
@@ -61,12 +64,12 @@ const TablePassing = () => {
   
   return (
     <Table className="w-full md:w-full lg:w-[850px]">
-      <TableCaption>A list of registered users.</TableCaption>
+      <TableCaption>A list of Registered Applicants.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[200px]">Email</TableHead>
           <TableHead className="w-[100px]">First Name</TableHead>
           <TableHead className="w-[100px]">Last Name</TableHead>
+          <TableHead className="w-[200px]">Email</TableHead>
           <TableHead className="w-[200px]">Job Position</TableHead>
           <TableHead className="w-[100px]">Actions</TableHead>
         </TableRow>
@@ -74,9 +77,9 @@ const TablePassing = () => {
       <TableBody>
         {users.map((user, index) => (
           <TableRow key={index}>
-            <TableCell>{user.email}</TableCell>
             <TableCell>{user.firstName}</TableCell>
             <TableCell>{user.lastName}</TableCell>
+            <TableCell>{user.email}</TableCell>
             <TableCell>{user.jobPosition}</TableCell>
             <TableCell>
               <button onClick={() => handleViewResume(user.uid)}>View Resume</button>
