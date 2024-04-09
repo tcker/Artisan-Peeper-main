@@ -62,10 +62,10 @@ const Camera = () => {
         // If we are over 66% sure we are sure we classified it right, draw it!
         if (predictions[n].score > 0.66) {
           const p = document.createElement('p');
-          p.innerText = predictions[n].class  + ' - ' 
+          p.innerText = predictions[n].class  + ' - with ' 
               + Math.round(parseFloat(predictions[n].score) * 100) 
-              + '% Detection.';
-          p.style = 'margin-center ' + predictions[n].bbox[0] + 'px; margin-top: '
+              + '% confidence.';
+          p.style = 'margin-left: ' + predictions[n].bbox[0] + 'px; margin-top: '
               + (predictions[n].bbox[1] - 10) + 'px; width: ' 
               + (predictions[n].bbox[2] - 10) + 'px; top: 0; left: 0;';
 
@@ -89,10 +89,9 @@ const Camera = () => {
   };
 
   return (
-    
-  <div className='mb-30 relative flex bg-black rounded-xl text-whiteborder-[1px] border-gray dark:border-white dark:bg-slate-500 justify-center items-center'>
-      <video ref={videoRef} className="absolute w-96 rounded-lg" autoPlay playsInline style={{ transform: 'scaleX(-1)' }}></video>
-      <div id="liveView" ref={liveViewRef} className="h-[400px] w-96"></div>
+    <div className='flex bg-black rounded-xl text-whiteborder-[1px] border-gray dark:border-white dark:bg-slate-500 justify-center items-center'>
+      <video ref={videoRef} className="w-[100%] rounded-lg" autoPlay playsInline style={{ transform: 'scaleX(-1)' }}></video>
+      <div id="liveView" ref={liveViewRef} className="w-full"></div>
     </div>
   );
 };

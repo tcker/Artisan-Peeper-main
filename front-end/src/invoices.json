@@ -1,56 +1,56 @@
 {
-    "invoices": [
-      {
-        "id": 3214,
-        "CV": "Passed",
-        "isAssessmentDone": true,
-        "name": "Fabella, Emmanuel.",
-        "rating": 95,
-        "overallRating": 85,
-        "pfp": "Emman.jpg",
-        "job": "Penetration Tester",
-        "type": "Part-Time",
-        "email": "emmanuelfabella606@gmail.com",
-        "contact": "093023432139"
-      },
-      {
-        "id": 5212,
-        "CV": "Passed",
-        "isAssessmentDone": true,
-        "name": "Baarde, Ram",
-        "rating": 86,
-        "overallRating": 91,
-        "pfp": "Ram.jpg",
-        "job": "Penetration Tester",
-        "type": "Fulltime",
-        "email": "ramchrist20@gmail.com",
-        "contact": "096023432139"
-      },
-      {
-        "id": 7321,
-        "CV": "Passed",
-        "isAssessmentDone": true,
-        "name": "Miranda, Rhyu",
-        "rating": 75,
-        "overallRating": 82,
-        "pfp": "Miranda.jpg",
-        "job": "Software Engineer",
-        "type": "Internship",
-        "email": "mirandarhyu@gmail.com",
-        "contact": "09202342139"
-      },
-      {
-        "id": 4321,
-        "CV": "Failed",
-        "isAssessmentDone": false,
-        "name": "Kapares, Romnick",
-        "rating": 43,
-        "overallRating": 83,
-        "pfp": "Kapares.jpg",
-        "job": "UI/UX Designer",
-        "type": "Full-Time",
-        "email": "romnickkapares@gmail.com",
-        "contact": "09849142139"
-      }
-    ]
-  }
+  "invoices": [
+    {
+      "id": 3214,
+      "CV": "Passed",
+      "isAssessmentDone": true,
+      "name": "Fabella, Emmanuel.",
+      "rating": 95,
+      "overallRating": 85,
+      "pfp": "Emman.jpg",
+      "job": "Penetration Tester",
+      "type": "Part-Time",
+      "email": "emmanuelfabella606@gmail.com",
+      "contact": "093023432139"
+    },
+    {
+      "id": 5212,
+      "CV": "Passed",
+      "isAssessmentDone": true,
+      "name": "Baarde, Ram",
+      "rating": 86,
+      "overallRating": 91,
+      "pfp": "Ram.jpg",
+      "job": "Penetration Tester",
+      "type": "Fulltime",
+      "email": "ramchrist20@gmail.com",
+      "contact": "096023432139"
+    },
+    {
+      "id": 7321,
+      "CV": "Passed",
+      "isAssessmentDone": true,
+      "name": "Miranda, Rhyu",
+      "rating": 75,
+      "overallRating": 82,
+      "pfp": "Rhyu.jpg",
+      "job": "Software Engineer",
+      "type": "Internship",
+      "email": "mirandarhyu@gmail.com",
+      "contact": "09202342139"
+    },
+    {
+      "id": 4321,
+      "CV": "Failed",
+      "isAssessmentDone": false,
+      "name": "Kapares, Romnick",
+      "rating": 43,
+      "overallRating": 83,
+      "pfp": "Kapares.jpg",
+      "job": "UI/UX Designer",
+      "type": "Full-Time",
+      "email": "romnickkapares@gmail.com",
+      "contact": "09849142139"
+    }
+  ]
+}
