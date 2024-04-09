@@ -7,6 +7,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../../backend/config/firebase"; // Assuming you have a file named firebase.js exporting your Firestore instance
+import { ToastContainer, toast } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -34,7 +36,17 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      console.error("Passwords do not match");
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
+    if(!email.endsWith("@gmail.com")) {
+      toast.error("Email must be a Gmail Address")
       return;
     }
 
@@ -122,6 +134,7 @@ function Register() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                
               />
             </div>
             <div className="grid gap-2">

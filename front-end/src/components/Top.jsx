@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/table.jsx"
 import {Link} from 'react-router-dom'
 
+
 const invoices = [
   {
     invoice: "INV001",

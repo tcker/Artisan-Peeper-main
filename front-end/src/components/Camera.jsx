@@ -7,7 +7,7 @@ const Camera = () => {
   const videoRef = useRef(null);
   const liveViewRef = useRef(null);
   const childrenRef = useRef([]);
-  const [detectionEnabled, setDetectionEnabled] = useState(false);
+  const [detectionEnabled, setDetectionEnabled] = useState(true);
 
   useEffect(() => {
     const enableCam = async () => {
