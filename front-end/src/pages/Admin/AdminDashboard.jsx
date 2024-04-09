@@ -7,26 +7,40 @@ import JobListing from "@/components/JobListing.jsx";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../../backend/config/firebase";
 import Searchbar from "@/components/Searchbar";
+import { ref, listAll } from 'firebase/storage';
+import { storage } from '../../../../backend/config/firebase'; 
 
 function AdminDashboard() {
   const [totalApplicants, setTotalApplicants] = useState(0);
-  const [cvPassingApplicants, setCvPassingApplicants] = useState(0);
+  const [usersWithResume, setUsersWithResume] = useState([]);
 
   useEffect(() => {
-    async function fetchTotalUsers() {
+    const fetchUsers = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const usersData = querySnapshot.docs.map(doc => doc.data());
-        setTotalApplicants(usersData.length);
+        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const userData = usersSnapshot.docs.map(doc => doc.data());
 
-        // Filter out users who have uploaded resumes
-        const cvPassingUsers = usersData.filter(user => user.hasResume); // Assuming the users' data has a field 'hasResume' indicating whether they have uploaded a resume
-        setCvPassingApplicants(cvPassingUsers.length);
+        // Total applicants count
+        setTotalApplicants(userData.length);
+        
+        // Users who have submitted resumes
+        const usersWithResumeData = await Promise.all(userData.map(async user => {
+          const userFolderRef = ref(storage, `resumes/${user.uid}`);
+          const userFolderSnapshot = await listAll(userFolderRef);
+          if (userFolderSnapshot.items.length > 0) {
+            return user;
+          }
+          return null;
+        }));
+        
+        const filteredUsers = usersWithResumeData.filter(user => user !== null);
+        setUsersWithResume(filteredUsers);
       } catch (error) {
-        console.error("Error fetching total users:", error);
+        console.error('Error fetching users:', error);
       }
-    }
-    fetchTotalUsers();
+    };
+
+    fetchUsers();
   }, []);
 
   return (
@@ -37,8 +51,8 @@ function AdminDashboard() {
           <Total title="Total Applicants" total={totalApplicants} added="+" />
           <Total
             title="CV Passing Applicants"
-            total={cvPassingApplicants}
-            // You can remove the 'added' prop if you don't want to show the additional number
+            total={usersWithResume.length}
+            added=""
           />
           <Total title="Passed Assessment" total="3" added="1+" />
           <Total title="Talents Onboard" total="1" added="+" />
@@ -48,7 +62,7 @@ function AdminDashboard() {
             <p className="text-xl font-bold mb-5 text-center">
               Passed Curriculum Vitae's
             </p>
-            <TablePassing />
+            <TablePassing users={usersWithResume} />
           </div>
           <div className="p-5 border-2 rounded-lg shadow-md">
             <p className="text-xl trfont-bold mb-3">Top Candidates</p>

@@ -1,0 +1,41 @@
+{
+    "invoices": [
+      {
+        "id": 3214,
+        "CV": "Passed",
+        "isAssessmentDone": true,
+        "name": "Fabella, Emmanuel.",
+        "rating": 95,
+        "overallRating": 85,
+        "profile": "../assets/profile/Emman.jpg"
+      },
+      {
+        "id": 5212,
+        "CV": "Passed",
+        "isAssessmentDone": true,
+        "name": "Baarde, Ram",
+        "rating": 86,
+        "overallRating": 91,
+        "profile": "../assets/profile/Ram.jpg"
+      },
+      {
+        "id": 7321,
+        "CV": "Passed",
+        "isAssessmentDone": true,
+        "name": "Miranda, Rhyu",
+        "rating": 75,
+        "overallRating": 82,
+        "profile": "../assets/profile/Rhyu.jpg"
+      },
+      {
+        "id": 4321,
+        "CV": "Failed",
+        "isAssessmentDone": false,
+        "name": "Kapares, Romnick",
+        "rating": 43,
+        "overallRating": 83,
+        "profile": "../assets/profile/Rhyu.jpg"
+      }
+    ]
+  }
+  
