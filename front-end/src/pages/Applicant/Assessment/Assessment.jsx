@@ -12,9 +12,7 @@ import { db } from '../../../config/firebase'; // Import the Firebase config
 
 import {
   Card,
-  CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
