@@ -62,9 +62,9 @@ const Camera = () => {
         // If we are over 66% sure we are sure we classified it right, draw it!
         if (predictions[n].score > 0.66) {
           const p = document.createElement('p');
-          p.innerText = predictions[n].class  + ' - with ' 
+          p.innerText = predictions[n].class  + ' - ' 
               + Math.round(parseFloat(predictions[n].score) * 100) 
-              + '% Object Detection.';
+              + '% Detection.';
           p.style = 'margin-center ' + predictions[n].bbox[0] + 'px; margin-top: '
               + (predictions[n].bbox[1] - 10) + 'px; width: ' 
               + (predictions[n].bbox[2] - 10) + 'px; top: 0; left: 0;';

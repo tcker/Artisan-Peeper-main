@@ -91,27 +91,29 @@ function App() {
       <BrowserRouter>
         {!isAuthenticated && <Navigate to="/login" />}
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<SignUpPage />} />
-          <Route path="/" element={<MainLayout isAdmin={isAdmin} isAssessmentOpen={isAssessmentOpen} />}>
-          <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob}/>}/>
-          <Route path="/dashboard" element={<ApplicantDashboardPage />} />
-          <Route path="/profile" element={<ApplicantProfilePage />} />
-          <Route path="/assessment-dashboard" element={<AssessmentDashboard />} />
-          <Route path="/assessment-areas" element={<Assessmentchoices />} />
-          <Route path="/assessment-start" element={<Assessment />} />
-          <Route path="/assessment-start/:id" element={<Assessment />} />
-            {isAdmin && (
-              <>
-                <Route path='/adminDashboard' element={<AdminDashboard />} />
-                <Route path='/view-user' element={<ViewUser />} />
-                <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob}/>}/>
-                <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob}/>}/>
-              </>
-            )}
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+  <Route path="/login" element={<Login />} />
+  <Route path="/register" element={<SignUpPage />} />
+  <Route path="/" element={<MainLayout isAdmin={isAdmin} isAssessmentOpen={isAssessmentOpen} />}>
+    <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob} />} />
+    <Route path="/dashboard" element={<ApplicantDashboardPage />} />
+    <Route path="/profile" element={<ApplicantProfilePage />} />
+    <Route path="/assessment-dashboard" element={<AssessmentDashboard />} />
+    <Route path="/assessment-areas" element={<Assessmentchoices />} />
+    <Route path="/assessment-start" element={<Assessment />} />
+    <Route path="/assessment-start/:id" element={<Assessment />} />
+    {isAdmin && (
+      <>
+        <Route path='/adminDashboard' element={<AdminDashboard />} />
+        <Route path='/view-user' element={<ViewUser />} />
+        {/* Pass addJob function to AddJobPage */}
+        <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
+        {/* Pass updateJob function to EditJobPage */}
+        <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} />
+      </>
+    )}
+  </Route>
+  <Route path="*" element={<NotFoundPage />} />
+</Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
