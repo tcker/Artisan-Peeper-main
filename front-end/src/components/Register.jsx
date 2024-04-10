@@ -45,8 +45,8 @@ function Register() {
       return;
     }
 
-    if(!email.endsWith("@gmail.com")) {
-      toast.error("Email must be a Gmail Address")
+    if (!email.endsWith("@gmail.com")) {
+      toast.error("Email must be a Gmail address");
       return;
     }
 
@@ -134,7 +134,6 @@ function Register() {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                
               />
             </div>
             <div className="grid gap-2">
@@ -168,11 +167,19 @@ function Register() {
           </Link> 
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        />
     </div>
   );
 }
 
 export default Register;
-
-
-
