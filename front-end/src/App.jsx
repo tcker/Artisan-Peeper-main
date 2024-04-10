@@ -4,7 +4,7 @@ import Login from "../src/components/Login.jsx";
 import SignUpPage from "@/pages/SignUpPage.jsx";
 import NotFoundPage from "@/pages/NotFoundPage.jsx";
 import MainLayout from "@/layout/MainLayout.jsx";
-import JobPage, {jobLoader} from "./pages/JobPage.jsx";
+import JobPage, { jobLoader } from "./pages/JobPage.jsx";
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
 import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
@@ -113,8 +113,8 @@ function App() {
         {/* Pass addJob function to AddJobPage */}
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
         <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />
-        {/* Pass updateJob function to EditJobPage */}
         <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} loader={jobLoader} />
+        {/* Pass updateJob function to EditJobPage */}
       </>
     )}
   </Route>

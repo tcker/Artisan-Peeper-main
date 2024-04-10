@@ -1,11 +1,10 @@
-import { useLoaderData, useParams } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {toast} from 'react-toastify'
-
-
+import { toast } from "react-toastify";
 import {
   Card,
   CardContent,
@@ -14,74 +13,78 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-function EditJobPage({updateJobSubmit}) {
-  const job = useLoaderData();
+function EditJobPage({ updateJobSubmit }) {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const {id} = useParams();
 
-  const [title, setTitle] = useState(job.title);
-  const [type, setType] = useState(job.type);
-  const [location, setLocation] = useState(job.location);
-  const [description, setDescription] = useState(job.description);
-  const [salary, setSalary] = useState(job.salary);
-  const [companyName, setCompanyName] = useState(job.company.name);
-  const [companyDescription, setCompanyDescription] = useState(job.company.description);
-  const [contactEmail, setContactEmail] = useState(job.company.contactEmail);
-  const [contactPhone, setContactPhone] = useState(job.company.contactPhone);
+  // State variable to store job data
+  const [jobData, setJobData] = useState({
+    title: "",
+    type: "",
+    location: "",
+    description: "",
+    salary: "",
+    company: {
+      name: "",
+      description: "",
+      contactEmail: "",
+      contactPhone: "",
+    },
+  });
 
-  const formSubmit = (e) => {
-    e.preventDefault();
-
-    const updatedJob = {
-      id,
-      title,
-      type,
-      location,
-      description,
-      salary,
-      company: {
-        name: companyName,
-        description: companyDescription,
-        contactEmail: contactEmail,
-        contactPhone: contactPhone,
-      },
+  // Fetch job data from API
+  useEffect(() => {
+    // Replace this with your API call to fetch job data based on the ID
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/api/jobs/${id}`);
+        if (response.ok) {
+          const job = await response.json();
+          setJobData(job);
+        } else {
+          throw new Error("Failed to fetch job data");
+        }
+      } catch (error) {
+        console.error("Error fetching job data:", error);
+      }
     };
 
-    updateJobSubmit(updatedJob);
-    toast.success('Job Updated Successfully!')
-    return navigate('/dashboard');
-  }
-  
+    fetchData();
+  }, [id]);
+
+  // Function to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    updateJobSubmit(jobData);
+    toast.success("Job Updated Successfully!");
+    navigate("/dashboard");
+  };
+
   return (
     <Container>
       <div className="pl-2 pr-2 justify-center flex items-center">
         <Card className="w-[800px]">
-          <form onSubmit={formSubmit}>
+          <form onSubmit={handleSubmit}>
             <CardHeader>
-              <CardTitle>Create Job Post</CardTitle>
-              <CardDescription>Kindly fill-in the information</CardDescription>
+              <CardTitle>Edit Job Post</CardTitle>
+              <CardDescription>Edit the information below</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid w-full items-center gap-4">
                 <div className="mb-4">
-                  <label
-                    htmlFor="type"
-                    className="block text-gray-700 font-bold mb-2"
-                  >
-                    Job Type
-                  </label>
+                  <Label htmlFor="type">Job Type</Label>
                   <select
                     id="type"
                     name="type"
-                    className="border rounded w-full py-2 px-3"
+                    className="border rounded w-full py-2 px-3 dark:bg-slate-900"
                     required
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
+                    value={jobData.type}
+                    onChange={(e) =>
+                      setJobData({ ...jobData, type: e.target.value })
+                    }
                   >
                     <option value="Full-Time">Full-Time</option>
                     <option value="Part-Time">Part-Time</option>
@@ -90,100 +93,134 @@ function EditJobPage({updateJobSubmit}) {
                   </select>
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Job Listing Name</Label>
+                  <Label htmlFor="title">Job Listing Name</Label>
                   <Input
-                    id="name"
+                    id="title"
                     type="text"
-                    placeholder="Name of your project"
+                    placeholder="Name of the job"
                     required
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    value={jobData.title}
+                    onChange={(e) =>
+                      setJobData({ ...jobData, title: e.target.value })
+                    }
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Job Description</Label>
+                  <Label htmlFor="description">Job Description</Label>
                   <Textarea
-                    id="name"
-                    placeholder="You are looking for..."
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    id="description"
+                    placeholder="Description of the job"
+                    value={jobData.description}
+                    onChange={(e) =>
+                      setJobData({ ...jobData, description: e.target.value })
+                    }
                     required
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="framework">Salary</Label>
+                  <Label htmlFor="salary">Salary</Label>
                   <select
                     id="salary"
                     name="salary"
-                    className="border rounded w-full py-2 px-3"
+                    className="border rounded w-full py-2 px-3 dark:bg-slate-900"
                     required
-                    value={salary}
-                    onChange={(e) => setSalary(e.target.value)}
+                    value={jobData.salary}
+                    onChange={(e) =>
+                      setJobData({ ...jobData, salary: e.target.value })
+                    }
                   >
                     <option value="Under $50K">Under $50K</option>
                     <option value="$50K - 60K">$50K - $60K</option>
                     <option value="$60K - 70K">$60K - $70K</option>
                     <option value="$70K - 80K">$70K - $80K</option>
-                    <option value="$80K - 90K">$80K - $90K</option>
-                    <option value="$90K - 100K">$90K - $100K</option>
-                    <option value="$100K - 125K">$100K - $125K</option>
-                    <option value="$125K - 150K">$125K - $150K</option>
-                    <option value="$150K - 175K">$150K - $175K</option>
-                    <option value="$175K - 200K">$175K - $200K</option>
+                    <option value="$80K - $90K">$80K - $90K</option>
+                    <option value="$90K - $100K">$90K - $100K</option>
+                    <option value="$100K - $125K">$100K - $125K</option>
+                    <option value="$125K - $150K">$125K - $150K</option>
+                    <option value="$150K - $175K">$150K - $175K</option>
+                    <option value="$175K - $200K">$175K - $200K</option>
                     <option value="Over $200K">Over $200K</option>
                   </select>
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Location</Label>
+                  <Label htmlFor="location">Location</Label>
                   <Input
-                    id="name"
+                    id="location"
                     type="text"
-                    placeholder="Name of your project"
+                    placeholder="Location of the job"
                     required
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
+                    value={jobData.location}
+                    onChange={(e) =>
+                      setJobData({ ...jobData, location: e.target.value })
+                    }
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Company Name</Label>
+                  <Label htmlFor="companyName">Company Name</Label>
                   <Input
-                    id="name"
+                    id="companyName"
                     type="text"
-                    placeholder="Name of your project"
-                    value={companyName}
-                    onChange={(e) => setCompanyName(e.target.value)}
+                    placeholder="Name of the company"
+                    value={jobData.company.name}
+                    onChange={(e) =>
+                      setJobData({
+                        ...jobData,
+                        company: { ...jobData.company, name: e.target.value },
+                      })
+                    }
                     required
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Company Description</Label>
+                  <Label htmlFor="companyDescription">Company Description</Label>
                   <Textarea
-                    id="name"
-                    placeholder="You are looking for..."
-                    value={companyDescription}
-                    onChange={(e) => setCompanyDescription(e.target.value)}
+                    id="companyDescription"
+                    placeholder="Description of the company"
+                    value={jobData.company.description}
+                    onChange={(e) =>
+                      setJobData({
+                        ...jobData,
+                        company: {
+                          ...jobData.company,
+                          description: e.target.value,
+                        },
+                      })
+                    }
                     required
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Company Email</Label>
+                  <Label htmlFor="contactEmail">Company Email</Label>
                   <Input
-                    id="name"
+                    id="contactEmail"
                     type="text"
-                    placeholder="Name of your project"
-                    value={contactEmail}
-                    onChange={(e) => setContactEmail(e.target.value)}
+                    placeholder="Email of the company"
+                    value={jobData.company.contactEmail}
+                    onChange={(e) =>
+                      setJobData({
+                        ...jobData,
+                        company: { ...jobData.company, contactEmail: e.target.value },
+                      })
+                    }
                     required
                   />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Company Phone</Label>
+                  <Label htmlFor="contactPhone">Company Phone</Label>
                   <Input
-                    id="name"
+                    id="contactPhone"
                     type="text"
-                    placeholder="Name of your project"
-                    value={contactPhone}
-                    onChange={(e) => setContactPhone(e.target.value)}
+                    placeholder="Phone number of the company"
+                    value={jobData.company.contactPhone}
+                    onChange={(e) =>
+                      setJobData({
+                        ...jobData,
+                        company: {
+                          ...jobData.company,
+                          contactPhone: e.target.value,
+                        },
+                      })
+                    }
                     required
                   />
                 </div>
@@ -191,13 +228,13 @@ function EditJobPage({updateJobSubmit}) {
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline">Cancel</Button>
-              <Button  type="submit">Update Job</Button>
+              <Button type="submit">Update Job</Button>
             </CardFooter>
           </form>
         </Card>
       </div>
     </Container>
-  )
+  );
 }
 
-export default EditJobPage
+export default EditJobPage;
