@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom";
 import Login from "../src/components/Login.jsx";
 import SignUpPage from "@/pages/SignUpPage.jsx";
 import NotFoundPage from "@/pages/NotFoundPage.jsx";
 import MainLayout from "@/layout/MainLayout.jsx";
-import JobPage from "./pages/JobPage.jsx";
+import JobPage, {jobLoader} from "./pages/JobPage.jsx";
 import ApplicantDashboardPage from "./pages/Applicant/ApplicantDashboardPage.jsx";
 import ApplicantProfilePage from "./pages/Applicant/ApplicantProfilePage.jsx";
 import AssessmentDashboard from "./pages/Applicant/Assessment/AssessmentDashboard.jsx";
@@ -17,6 +17,7 @@ import ViewUser from './pages/Admin/ViewUser.jsx';
 import { ThemeProvider } from "./components/theme-provider.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -53,6 +54,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+   // Add Job
   const addJob = async (newJob) => {
     const res = await fetch('/api/jobs', {
       method: 'POST',
@@ -64,6 +66,7 @@ function App() {
     return;
   }
 
+ // Delete Job
   const deleteJob = async (id) => {
     const res = await fetch(`/api/jobs/${id}`, {
       method: 'DELETE'
@@ -71,6 +74,7 @@ function App() {
     return;
   }
 
+  // Update Job
   const updateJob = async (job) => {
     const res = await fetch(`/api/jobs/${job.id}`, {
       method: 'PUT',
@@ -86,6 +90,7 @@ function App() {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <ThemeProvider>
       <BrowserRouter>
@@ -94,7 +99,6 @@ function App() {
   <Route path="/login" element={<Login />} />
   <Route path="/register" element={<SignUpPage />} />
   <Route path="/" element={<MainLayout isAdmin={isAdmin} isAssessmentOpen={isAssessmentOpen} />}>
-    <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob} />} />
     <Route path="/dashboard" element={<ApplicantDashboardPage />} />
     <Route path="/profile" element={<ApplicantProfilePage />} />
     <Route path="/assessment-dashboard" element={<AssessmentDashboard />} />
@@ -105,10 +109,12 @@ function App() {
       <>
         <Route path='/adminDashboard' element={<AdminDashboard />} />
         <Route path='/view-user' element={<ViewUser />} />
+        <Route path='/view-user/:id' element={<ViewUser />} />
         {/* Pass addJob function to AddJobPage */}
         <Route path='/add-job' element={<AddJobPage addJobSubmit={addJob} />} />
+        <Route path='/jobs/:id' element={<JobPage deleteJob={deleteJob} />} loader={jobLoader} />
         {/* Pass updateJob function to EditJobPage */}
-        <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} />
+        <Route path="/edit-job/:id" element={<EditJobPage updateJobSubmit={updateJob} />} loader={jobLoader} />
       </>
     )}
   </Route>

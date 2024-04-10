@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from "react";
 import Container from "@/components/Container.jsx";
 import { useParams } from "react-router-dom";
 import { FaMapMarker, FaArrowLeft } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { toast } from "react-toastify";
 import {
   Card,
   CardDescription,
@@ -22,10 +24,18 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-function JobPage() {
+
+function JobPage({deleteJob}) {
   const { id } = useParams();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  function onDeleteClick() {
+    deleteJob(id); 
+    toast.success("Job Deleted Successfully!");
+    navigate("/adminDashboard");
+  }
 
   useEffect(() => {
     const fetchJob = async () => {
@@ -105,7 +115,9 @@ function JobPage() {
             <CardHeader>
               <CardTitle>Manage Job</CardTitle>
               <div className="grid sm:grid-cols-1 md:grid-cols-8 gap-2 pt-4">
-                <Button className="w-23">Edit Job</Button>
+                  <Link to={`/edit-job/${id}`} className="w-23">
+                    <Button className="w-[100%]">Edit Job</Button>
+                  </Link>
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
                     <Button className="w-23" variant="outline">
@@ -123,18 +135,25 @@ function JobPage() {
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={onDeleteClick}>
+                          Continue
+                        </AlertDialogAction>
+                    </AlertDialogFooter> 
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
             </CardHeader>
           </Card>
-        </div>
+        </div>  
       </div>
     </Container>
   );
 }
+const jobLoader = async ({ params }) => {
+  const res = await fetch(`/api/jobs/${params.id}`);
+  const data = await res.json();
+  return data;
+};
 
-export default JobPage;
+export { JobPage as default, jobLoader };

@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import BG from '@/assets/side-image.jpeg'
+import Image from '@/assets/side-image.jpeg'
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -44,7 +44,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[700px] overflow-hidden">
       <div className="flex items-center justify-center py-12 h-screen">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -88,7 +88,13 @@ function Login() {
           </div>
         </div>
       </div>
+      <img
+          src={Image}
+          alt="Image"
+          className="h-screen w-full object-cover dark-mode-img"
+        />
     </div>
+    
   );
 }
 

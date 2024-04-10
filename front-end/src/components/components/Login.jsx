@@ -44,7 +44,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px] overflow-hidden">
+    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[700px] overflow-hidden">
       <div className="flex items-center justify-center py-12 h-screen">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2 text-center">
@@ -88,15 +88,11 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-muted lg:block h-[calc(100vh+100px)]">
         <img
           src={Image}
           alt="Image"
-          width="1920"
-          height="1080"
-          className="h-full w-full object-cover dark-mode-img"
-        />
-      </div>
+          className="h-screen w-full object-cover dark-mode-img"
+        /> 
     </div>
   );
 }
