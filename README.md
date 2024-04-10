@@ -68,7 +68,7 @@ To get started with this project, follow these instructions:
 
 # Features:
 
-**You can try Dark mode and Light mode **
+**You can try Dark mode and Light mode**
 
 
 
