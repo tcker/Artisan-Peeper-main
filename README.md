@@ -11,7 +11,7 @@
    </pre>                                                                                             
 
 <div align="center">
-<h2>WPH DIGITAL HACKATHON 2024 | ByteMeHarder PH</h2>
+<h2>WPH DIGITAL HACKATHON 2024 | ByteMeHarder Philippines 🇵🇭</h2>
 </div>
 
  
