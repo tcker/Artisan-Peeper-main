@@ -14,6 +14,11 @@
 <h2>WPH DIGITAL HACKATHON 2024 | ByteMeHarder Philippines 🇵🇭</h2>
 </div>
 
+<p>Artisan Peeper was derived from the two words artisan which means “a skilled person who produces quality output” and peeper derived from the word “the eyes”. Artisan Peeper stands as a beacon for recognizing excellence.
+
+With Artisan Peeper, we revolutionize talent discovery. Our platform offers unparalleled access to a diverse pool of skilled individuals, providing invaluable insights with minimal effort. Seamlessly navigate through profiles, gaining a comprehensive understanding of each applicant in moments. Streamlining the hiring process, we empower businesses to swiftly identify and secure top-tier talent.
+</p>
+
  
 
 
@@ -70,7 +75,12 @@ To get started with this project, follow these instructions:
 
 **You can try Dark mode and Light mode**
 
+# Contact Information
 
+Baarde, Ram			 |  ramchrist20@gmail.com | tcker	<br>		
+Fabella, Emmanuel 		 |  emmanuelfabella606@gmail.com  |  MasterTraits <br>
+Lizardo, Aubrey Llanes	 |  lizardoaubrey.software@gmail.com | Br3y <br>
+Miranda, Rhyu 		 |  mirandarhyu@gmail.com | Coshu
 
 
 
