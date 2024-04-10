@@ -82,6 +82,11 @@ Fabella, Emmanuel 		 |  emmanuelfabella606@gmail.com  |  MasterTraits <br>
 Lizardo, Aubrey Llanes	 |  lizardoaubrey.software@gmail.com | Br3y <br>
 Miranda, Rhyu 		 |  mirandarhyu@gmail.com | Coshu
 
+<hr>
+
+<div align="center">
+<h1>Thank you!</h1>
+</div>
 
 
 
