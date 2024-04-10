@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../../backend/config/firebase"; // Assuming you have a file named firebase.js exporting your Firestore instance
-import { ToastContainer, toast } from "react-toastify"; 
-import "react-toastify/dist/ReactToastify.css";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAkRNKXJVBa--Pp-PILg8-0T_OtdSpFMlo",
@@ -30,43 +26,17 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [jobPosition, setJobPosition] = useState(""); // Add job position state
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
-      return;
-    }
-
-    if (password.length < 6) {
-      toast.error("Password must be at least 6 characters long");
-      return;
-    }
-
-    if (!email.endsWith("@gmail.com")) {
-      toast.error("Email must be a Gmail address");
+      console.error("Passwords do not match");
       return;
     }
 
     try {
-      // Create the user in Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      // Add user details to Firestore
-      await addDoc(collection(db, "users"), {
-        uid: userCredential.user.uid,
-        firstName,
-        lastName,
-        email,
-        jobPosition, // Save job position
-      });
-
+      await createUserWithEmailAndPassword(auth, email, password);
       // Set registration success to true
       setRegistrationSuccess(true);
     } catch (error) {
@@ -77,9 +47,9 @@ function Register() {
   return (
     <div className="h-screen flex items-center justify-center">
       <div className="mx-auto max-w-sm">
-        <div className="text-xl">Sign Up</div>
+        <div className="text-xl text-center">Sign Up</div>
         <div>
-          <p>Enter your information to create an account</p>
+          <p className="text-muted-foreground text-sm text-center py-2 mb-2">Enter your information to create an account</p>
         </div>
         <form onSubmit={handleRegister}>
           <div className="grid gap-4">
@@ -114,16 +84,6 @@ function Register() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="job-position">Job Position</Label>
-              <Input
-                id="job-position"
-                placeholder="Software Engineer, Designer, etc."
-                required
-                value={jobPosition}
-                onChange={(e) => setJobPosition(e.target.value)}
               />
             </div>
             <div className="grid gap-2">
@@ -162,22 +122,9 @@ function Register() {
         )}
         <div className="mt-4 text-center text-sm">
           Already have an account?{" "}
-          <Link to="/login" className="underline cursor-pointer">
-            Sign in
-          </Link> 
+          <Link to="/login"><span className="underline cursor-pointer">Sign in</span></Link>
         </div>
       </div>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        />
     </div>
   );
 }

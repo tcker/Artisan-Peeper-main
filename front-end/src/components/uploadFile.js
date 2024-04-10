@@ -1,9 +1,8 @@
 import { ref, getDownloadURL, uploadBytesResumable, getMetadata, StorageError } from "firebase/storage";
-import { storage } from "../../../backend/config/firebase"; // Import storage from your Firebase configuration file
-import { db } from "../../../backend/config/firebase"; // Import db from your Firebase configuration file
-import { auth } from "../../../backend/config/firebase"; // Import auth from your Firebase configuration file
+import { storage } from "../../../backend/config/firebase"; 
+import { db } from "../../../backend/config/firebase"; 
+import { auth } from "../../../backend/config/firebase"; 
 
-// Rest of the uploadFile.js code...
 
 const uploadFile = async (files, setProgress) => {
   const currentUser = auth.currentUser;
@@ -11,7 +10,7 @@ const uploadFile = async (files, setProgress) => {
     throw new Error("User not authenticated");
   }
 
-  const userUUID = currentUser.uid; // Get UUID of the current user
+  const userUUID = currentUser.uid; 
   const uploadedFilesData = await Promise.all(
     files.map(async (file) => {
       try {
