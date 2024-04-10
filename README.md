@@ -56,7 +56,7 @@ To get started with this project, follow these instructions:
    ```
 5. **Access the application in your web browser at**
   
-   [http://localhost:5173](http://localhost:5173).
+   [http://localhost:5173/login](http://localhost:5173/login).
 
 6. Access **Admin account** in login **Admin Account**
 
