@@ -27,19 +27,19 @@ To get started with this project, follow these instructions:
   
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/tcker/Artisan-Peeper-main
    ```
 
-2. Navigate to the project directory, make two terminals for the front-end directory:
+2. **Navigate to the project directory, make two terminals for the front-end directory:**
 
    ```bash
    cd front-end
    ```
 
-3. Install the depedencies
+3. **Install the depedencies**
 
    ```bash
    npm install
@@ -51,7 +51,9 @@ To get started with this project, follow these instructions:
    npm run dev
    npm run server
    ```
-4. Access the application in your web browser at [http://localhost:5173](http://localhost:5173).
+4. **Access the application in your web browser at**
+  
+   [http://localhost:5173](http://localhost:5173).
 
 
 
