@@ -45,15 +45,22 @@ To get started with this project, follow these instructions:
    npm install
    ```
 
-3. **Starting the server** Input **npm run dev** for the first terminal and **npm run server** for the second terminal (must be in front-end directory)
+4. **Starting the server** Input **npm run dev** for the first terminal and **npm run server** for the second terminal (must be in front-end directory)
 
    ```bash
    npm run dev
    npm run server
    ```
-4. **Access the application in your web browser at**
+5. **Access the application in your web browser at**
   
    [http://localhost:5173](http://localhost:5173).
+
+6. Access **Admin account** in login **Admin Account**
+
+  ```bash
+   Email:         admin@gmail.com
+   Password:      123456
+   ```
 
 
 
