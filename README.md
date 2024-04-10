@@ -11,7 +11,7 @@
    </pre>                                                                                             
 
 <div align="center">
-<h2>WPH DIGITAL HACKATHON 2024 | ByteMeHarder PH</h2>
+<h2>WPH DIGITAL HACKATHON 2024 | ByteMeHarder Philippines 🇵🇭</h2>
 </div>
 
  
@@ -44,8 +44,11 @@ To get started with this project, follow these instructions:
    ```bash
    npm install
    ```
+<hr>
 
-4. **Starting the server** Input **npm run dev** for the first terminal and **npm run server** for the second terminal **(must be in front-end directory)**
+## Starting the Server
+
+ Input **npm run dev** for the first terminal and **npm run server** for the second terminal **(must be in front-end directory)**
 **
    ```bash
    npm run dev
@@ -53,7 +56,7 @@ To get started with this project, follow these instructions:
    ```
 5. **Access the application in your web browser at**
   
-   [http://localhost:5173](http://localhost:5173).
+   [http://localhost:5173/login](http://localhost:5173/login)
 
 6. Access **Admin account** in login **Admin Account**
 
@@ -61,7 +64,11 @@ To get started with this project, follow these instructions:
    Email:         admin@gmail.com
    Password:      123456
    ```
+<hr>
 
+# Features:
+
+**You can try Dark mode and Light mode**
 
 
 
