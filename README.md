@@ -64,7 +64,11 @@ To get started with this project, follow these instructions:
    Email:         admin@gmail.com
    Password:      123456
    ```
+<hr>
 
+# Features:
+
+**You can try Dark mode and Light mode **
 
 
 
