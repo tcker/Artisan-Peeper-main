@@ -17,6 +17,44 @@
  
 
 
+# Instructions to run the Program
+## Getting Started
+
+To get started with this project, follow these instructions:
+### Prerequisites
+
+- **Node.js**, **Express.js** installed on your machine
+  
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/tcker/Artisan-Peeper-main
+   ```
+
+2. Navigate to the project directory, make two terminals for the front-end directory:
+
+   ```bash
+   cd front-end
+   ```
+
+3. Install the depedencies
+
+   ```bash
+   npm install
+   ```
+
+3. **Starting the server** Input **npm run dev** for the first terminal and **npm run server** for the second terminal (must be in front-end directory)
+
+   ```bash
+   npm run dev
+   npm run server
+   ```
+4. Access the application in your web browser at [http://localhost:5173](http://localhost:5173).
+
+
+
 
 
 
