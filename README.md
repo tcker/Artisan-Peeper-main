@@ -44,8 +44,11 @@ To get started with this project, follow these instructions:
    ```bash
    npm install
    ```
+<hr>
 
-4. **Starting the server** Input **npm run dev** for the first terminal and **npm run server** for the second terminal **(must be in front-end directory)**
+## Starting the Server
+
+ Input **npm run dev** for the first terminal and **npm run server** for the second terminal **(must be in front-end directory)**
 **
    ```bash
    npm run dev
